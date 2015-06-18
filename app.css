@@ -399,7 +399,7 @@ tree {
   width: auto;
   margin-top: 25px;
   min-width: 3ex;
-  margin-right: 3px;
+  margin-right: 6px;
   height: 100%;
   display: block;
 }
@@ -465,4 +465,25 @@ tree {
 
 .md>:last-child, .md .-cells>:last-child, .md .-lists>:last-child, .md .-blocks>:last-child, .md .-headers>:last-child, .md h1>:last-child, .md h2>:last-child, .md h3>:last-child, .md h4>:last-child, .md h5>:last-child, .md h6>:last-child, .md th>:last-child, .md td>:last-child, .md ul>:last-child, .md ol>:last-child, .md .-lists>:last-child, .md pre>:last-child, .md blockquote>:last-child, .md table>:last-child, .md p>:last-child, .md ul>:last-child, .md ol>:last-child {
   margin-bottom: 0;
+}
+
+clickview > div {
+  display: inline;
+  cursor: pointer;
+}
+
+.quickshow {
+  font-size: 1.4em;
+  padding: 5px;
+  margin: 10px 0;
+  border: 1px solid #BEBEBE;
+  border-radius: 5px;
+}
+
+.flat-list li {
+  display: inline-block;
+}
+
+.flat-list li:not(.first) {
+  margin-left: 10px;
 }

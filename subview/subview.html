@@ -48,13 +48,14 @@
 				{{post.data.created_utc | utcdatetolocal | timeago}} 
 			</p>
 
-			<div view-content="{{post.data.title | markdown}}" ng-if="post.data.is_self">
-				click
-			</div>
+			
 
 			<ul class="flat-list buttons">
 				<li class="first">
 					<a ng-click="app.setLocation('post/'+post.data.subreddit+'/'+post.data.id,false)" class="comments" ng-bind="post.data.num_comments + ' comments'"></a>
+				</li>
+				<li>
+					<clickview link="post.data" ng-if="post.data.is_self"></clickview>
 				</li>
 			</ul>
 		</div>
