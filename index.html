@@ -32,7 +32,7 @@
 
       <ul class="subreddits">
         <li class="subreddit" ng-repeat="subreddit in app.subreddits">
-          <a ng-click="app.setLocation('http://www.reddit.com'+subreddit.data.url, false)" ng-bind="subreddit.data.display_name | lowercase"></a>
+          <a ng-click="app.setLocation('r/'+subreddit.data.display_name, false)" ng-bind="subreddit.data.display_name | lowercase"></a>
         </li>
       </ul>
     </div>

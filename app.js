@@ -72,10 +72,10 @@ angular.module('myApp', [
 .factory('redditApiService', function($http){
 	var redditApi = {};
 
-	redditApi.getPosts = function(sub, sort) {
+	redditApi.getPosts = function(sub, sort, time) {
 		return $http({
 			method: 'JSONP',
-			url: 'http://www.reddit.com/r/' + sub + '/'+ sort +'.json?jsonp=JSON_CALLBACK'
+			url: 'http://www.reddit.com/r/' + sub + '/'+ sort +'.json?jsonp=JSON_CALLBACK&t='+time
 		})
 	}
 

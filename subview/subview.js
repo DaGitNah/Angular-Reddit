@@ -4,7 +4,7 @@ angular.module('myApp.subview', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
 
-	$routeProvider.when('/r/:sub?/:sort?', {
+	$routeProvider.when('/r/:sub?/:sort?/:time?', {
 		templateUrl: 'subview/subview.html',
 		controller: 'subviewCtrl as controller'
 	});
@@ -16,8 +16,9 @@ angular.module('myApp.subview', ['ngRoute'])
 
 	self.subreddit = $routeParams.sub ? $routeParams.sub : 'all';
 	self.sort = $routeParams.sort ? $routeParams.sort : 'top';
+	self.time = $routeParams.time ? $routeParams.time : 'daily';
 
-	redditApiService.getPosts(this.subreddit, this.sort).success(function (data, status, headers, config){
+	redditApiService.getPosts(this.subreddit, this.sort, this.time).success(function (data, status, headers, config){
 		self.posts = data.data.children;
 
 	}).error(function(data, status, headers, config) {
