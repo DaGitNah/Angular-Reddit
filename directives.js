@@ -14,10 +14,15 @@ app.directive('clickviewtext', ['redditApiService', function(redditApiService) {
 		link: function (scope, element, attrs) {
 			scope.showBtn = true;
 			scope.showLoader = false;
+			scope.isOpen = false;
 
 			element.on('click', function(){	
+				if(scope.isOpen)
+					return;
+
 				scope.showBtn = false;
 				scope.showLoader = true;
+				scope.isOpen = true;
 
 				redditApiService.getPost(scope.link.subreddit, scope.link.id, 1).success(function (data, status, headers, config){
 					scope.html = data[0].data.children[0].data.selftext;
