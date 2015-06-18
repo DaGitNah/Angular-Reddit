@@ -1,5 +1,5 @@
 
-app.directive('clickview', ['redditApiService', function(redditApiService) {
+app.directive('clickviewtext', ['redditApiService', function(redditApiService) {
 	return {
 		restrict: 'E',
 		scope: {

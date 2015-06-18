@@ -58,6 +58,7 @@ input:focus {
 /* app css stylesheet */
 html * {
   box-sizing: border-box;
+  line-height: 110%;
 }
 
 html, body {
@@ -478,6 +479,10 @@ clickview > div {
   margin: 10px 0;
   border: 1px solid #BEBEBE;
   border-radius: 5px;
+}
+
+.btn-quickshow {
+  cursor: pointer;
 }
 
 .flat-list li {
