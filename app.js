@@ -28,6 +28,7 @@ angular.module('myApp', [
 	self.sort = $location.path().split('/')[3];
 	self.sortTypes = [
 	'top',
+	'hot',
 	'controversial',
 	'new'
 	];
@@ -37,7 +38,7 @@ angular.module('myApp', [
 	})
 
 	if(self.sortTypes.indexOf(self.sort) == -1){
-		self.sort = "top";
+		self.sort = "hot";
 	}
 
 	$rootScope.$on("$routeChangeStart", function(event, next, current) {

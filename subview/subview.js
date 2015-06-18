@@ -15,7 +15,7 @@ angular.module('myApp.subview', ['ngRoute'])
 	var self = this;
 
 	self.subreddit = $routeParams.sub ? $routeParams.sub : 'all';
-	self.sort = $routeParams.sort ? $routeParams.sort : 'top';
+	self.sort = $routeParams.sort ? $routeParams.sort : 'hot';
 	self.time = $routeParams.time ? $routeParams.time : 'day';
 
 	redditApiService.getPosts(this.subreddit, this.sort, this.time).success(function (data, status, headers, config){
