@@ -33,14 +33,12 @@
 		<a ng-if="post.data.is_self" class="title" ng-click="app.setLocation('post/'+post.data.subreddit+'/'+post.data.id,false)">
 			<span class="linkflairlabel" ng-if="post.data.link_flair_text" ng-bind="post.data.link_flair_text"></span> 
 			<span class="nsfwtag" ng-if="post.data.over_18">NSFW</span> 
-
-			{{post.data.title}}
+			<span ng-bind-html="post.data.title"></span>
 		</a>
 		<a ng-if="!post.data.is_self" class="title" ng-click="app.setLocation(post.data.url, true)">
 			<span class="linkflairlabel" ng-if="post.data.link_flair_text" ng-bind="post.data.link_flair_text"></span> 
 			<span class="nsfwtag" ng-if="post.data.over_18">NSFW</span> 
-
-			{{post.data.title}}
+			<span ng-bind-html="post.data.title"></span>
 		</a>
 
 		<span class="domain"><a href="" ng-bind="'('+post.data.domain+')'"></a></span>

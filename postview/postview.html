@@ -14,17 +14,17 @@
 </a>
 
 <div class="entry">
-	<a ng-if="post.data.is_self" class="title" ng-click="app.setLocation('post/'+controller.post.subreddit+'/'+controller.post.id,false)">
+	<a ng-if="controller.post.is_self" class="title" ng-click="app.setLocation('post/'+controller.post.subreddit+'/'+controller.post.id,false)">
 		<span class="linkflairlabel" ng-if="controller.post.link_flair_text" ng-bind="controller.post.link_flair_text"></span> 
 		<span class="nsfwtag" ng-if="controller.post.over_18">NSFW</span> 
 
-		{{controller.post.title}}
+		<span ng-bind-html="controller.post.title"></span>
 	</a>
-	<a ng-if="!post.data.is_self" class="title" ng-click="app.setLocation(controller.post.url, true)">
+	<a ng-if="!controller.post.is_self" class="title" ng-click="app.setLocation(controller.post.url, true)">
 		<span class="linkflairlabel" ng-if="controller.post.link_flair_text" ng-bind="controller.post.link_flair_text"></span> 
 		<span class="nsfwtag" ng-if="controller.post.over_18">NSFW</span> 
 
-		{{controller.post.title}}
+		<span ng-bind-html="controller.post.title"></span>
 	</a>
 
 	<span class="domain"><a href="" ng-bind="'('+controller.post.domain+')'"></a></span>

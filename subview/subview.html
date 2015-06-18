@@ -5,7 +5,7 @@
 <div class="card" ng-if="!controller.errorMessage">
 	<div class="sort">
 		<span class="sort-text">Sort:</span>
-		<select ng-model="controller.time" ng-change="app.setLocation('r/'+controller.subreddit+'/'+controller.sort+'/'+controller.time)">
+		<select ng-model="controller.time" ng-change="app.setLocation('r/'+controller.subreddit+'/'+controller.sort+'/'+controller.time+'/'+controller.last)">
 			<option value="day">past 24 hours</option>
 			<option value="week">past week</option>
 			<option value="month">past month</option>
@@ -33,14 +33,12 @@
 			<a ng-if="post.data.is_self" class="title" ng-click="app.setLocation('post/'+post.data.subreddit+'/'+post.data.id,false)">
 				<span class="linkflairlabel" ng-if="post.data.link_flair_text" ng-bind="post.data.link_flair_text"></span> 
 				<span class="nsfwtag" ng-if="post.data.over_18">NSFW</span> 
-
-				{{post.data.title}}
+				<span ng-bind-html="post.data.title"></span>
 			</a>
 			<a ng-if="!post.data.is_self" class="title" ng-click="app.setLocation(post.data.url, true)">
 				<span class="linkflairlabel" ng-if="post.data.link_flair_text" ng-bind="post.data.link_flair_text"></span> 
 				<span class="nsfwtag" ng-if="post.data.over_18">NSFW</span> 
-
-				{{post.data.title}}
+				<span ng-bind-html="post.data.title"></span>
 			</a>
 
 			<span class="domain"><a href="" ng-bind="'('+post.data.domain+')'"></a></span>
@@ -58,5 +56,9 @@
 		</div>
 
 		<div class="clear"></div>
+	</div>
+	<div class="pagination">
+		<button ng-click="app.setLocation('r/'+controller.subreddit+'/'+controller.sort+'/'+controller.time+'/'+controller.first+'/before')" class="btn-prev">&lt; prev</button>
+		<button ng-click="app.setLocation('r/'+controller.subreddit+'/'+controller.sort+'/'+controller.time+'/'+controller.last+'/after')" class="btn-next">more &gt;</button>
 	</div>	
 </div>
