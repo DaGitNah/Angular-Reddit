@@ -248,7 +248,7 @@ html.menu-open .sidebar {
 .card {
   width: 100%;
   min-height: 50px;
-  padding: 5px 10px;
+  padding: 5px 10px 5px 0;
   margin: 10px 0;
   border: 1px solid;
   border-color: #e5e6e9 #dfe0e4 #d0d1d5;
@@ -468,11 +468,6 @@ tree {
   margin-bottom: 0;
 }
 
-clickview > div {
-  display: inline;
-  cursor: pointer;
-}
-
 .quickshow {
   font-size: 1.4em;
   padding: 5px;
@@ -492,4 +487,8 @@ clickview > div {
 
 .flat-list li:not(.first) {
   margin-left: 10px;
+}
+
+.btn-showmore:hover {
+  cursor: pointer;
 }

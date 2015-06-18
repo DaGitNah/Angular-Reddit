@@ -55,7 +55,7 @@
 					<a ng-click="app.setLocation('post/'+post.data.subreddit+'/'+post.data.id,false)" class="comments" ng-bind="post.data.num_comments + ' comments'"></a>
 				</li>
 			</ul>
-			<clickview link="post.data" ng-if="post.data.is_self"></clickview>
+			<clickviewtext link="post.data" ng-if="post.data.is_self"></clickviewtext>
 		</div>
 
 		<div class="clear"></div>
