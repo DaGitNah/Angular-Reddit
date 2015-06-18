@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> 
+<html lang="en" ng-app="myApp" ng-controller="appCtrl as app" class="no-js" ng-class="{'menu-open': app.menuOpen, 'loading': app.showLoader}"> 
+<!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Angular reddit</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="app.css">
+    <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div class="sidebar">
+      <a href="#" class="logo">
+        <img src="http://i.imgur.com/nqyB2SI.jpg" width="200px" alt="reddit logo">
+      </a>
+      <a ng-click="app.toggleMenu()" class="menu-toggle">
+        <img src="http://adeptstation.com/images/menu_toggle.png" alt="toggle menu">
+      </a>
+
+      <ul class="subreddits">
+        <li class="subreddit" ng-repeat="subreddit in app.subreddits">
+          <a ng-click="app.setLocation('http://www.reddit.com'+subreddit.data.url, false)" ng-bind="subreddit.data.display_name | lowercase"></a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="headbar">
+      <div class="view">
+        <div class="search">
+          <input ng-model="app.searchQuery" class="search-query" placeholder="Search Reddit">
+          <button ng-click="app.search()" class="search-button">search</button>
+        </div>
+
+        <div class="sort">
+          <span class="sort-text">Sort:</span>
+          <select ng-model="app.sort" ng-change="app.setSort()">
+            <option value="top">top</option>
+            <option value="new">new</option>
+            <option value="controversial">controversial</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    
+    <div class="loader">
+      <img src="inc/image/loading.gif" alt="loader">
+    </div>
+  
+    <div class="view content" ng-view>
+    </div>
+
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/showdown/compressed/Showdown.js"></script>
+    <script src="bower_components/angular-markdown-filter/markdown.js"></script>
+    <script src="inc/js/jquery.js"></script>
+    <script src="inc/js/timeago.js"></script>
+    <script src="app.js"></script>
+    <script src="directives.js"></script>
+    <script src="subview/subview.js"></script>
+    <script src="postview/postview.js"></script>
+    <script src="search/search.js"></script>
+    <script src="components/version/version.js"></script>
+    <script src="components/version/version-directive.js"></script>
+    <script src="components/version/interpolate-filter.js"></script>
+
+    <script type="text/ng-template" id="commentTree">
+      <span class="score" ng-bind="comment.data.score"></span>
+        <div class="entry">
+          <p class="tagline">
+            <span ng-click="app.setLocation('http://www.reddit.com/user/' + comment.data.author, true)" class="author" ng-bind="comment.data.author"></span>
+          </p>
+          <div class="usertext">
+            <div class="usertext-body">
+              <div class="md">
+                <p ng-bind-html="comment.data.body | markdown"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div ng-if="comment.data.replies" class="child">
+            <div ng-repeat="comment in comment.data.replies.data.children" ng-include="'commentTree'" class="comment">           
+            </div>
+        </div>
+    </script>
+  </body>
+</html>

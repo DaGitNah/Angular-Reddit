@@ -1,0 +1,456 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+a {
+  cursor: pointer;
+}
+
+input:focus {
+  outline: none;
+  border: none;
+}
+
+/* app css stylesheet */
+html * {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: #e5e5e5;
+}
+
+body {
+  font-size: 62.5%;
+  color: #333;
+  font-family: 'Lato', arial, sans-serif;
+}
+
+.clear {
+  clear: both;
+  width: 0;
+  height: 0;
+  font: 0 0/0;
+}
+
+.view {
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  padding: 15px 15px 15px 65px;
+  transition: all 0.5s;
+  z-index: 2;
+}
+
+.view.content {
+  top: 90px;
+}
+
+.error {
+  font-size: 1.4em;
+  color: red;
+  font-style: italic;
+}
+
+.loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.5s;
+}
+
+html.loading .loader {
+  opacity: 1;
+}
+
+.loader img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.headbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: table;
+  width: 100%;
+  height: 90px;
+  background-color: #F5F5F5;
+
+  transition: all 0.5s;
+  z-index: 9;
+}
+
+.headbar .view {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.headbar .search, .headbar .sort {
+  float: left;
+}
+
+.headbar .sort {
+  float: right;
+}
+
+.headbar .sort-text {
+  display: inline-block;
+  font-size: 1.4em;
+  margin-right: 5px;
+}
+
+.headbar .sort select {
+  max-width: 50%;
+  min-width: 100px;
+  border: 1px solid rgba(239, 239, 239, 1);
+  padding: 5px;
+  background-color: #fff;
+  font-size: 1.2em;
+  border-radius: 0;
+  height: 27px;
+}
+
+.headbar .search-query {
+  width: 350px;
+  max-width: 50%;
+  border: 1px solid rgba(239, 239, 239, 1);
+  padding: 5px;
+  font-size: 1.2em;
+}
+
+.headbar .search-button {
+  width: 75px;
+  height: 26px;
+  padding-left: 25px;
+  margin-left: -3px;
+  background-color: #4585F4;
+  border: none;
+  color: #fff;
+  font-size: 1.3em;
+  background-image: url('inc/image/search.png');
+  background-size: auto 60%;
+  background-position: 5px center;
+  background-repeat: no-repeat;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -200px;
+  width: 250px;
+  height: 100%;
+  background-color: #fff;
+  border-right: 1px solid #efefef;
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+
+  transition: all 0.5s;
+  z-index: 10;
+}
+
+html.menu-open .sidebar {
+  left: 0;
+}
+
+.sidebar .subreddits {
+  height: 100%;
+  overflow: scroll;
+}
+
+.sidebar .subreddits .subreddit {
+  width: 100%;
+  min-height: 20px;
+  line-height: 20px;
+  font-size: 1.4em;
+  padding: 3px 10px;
+}
+
+.sidebar .subreddits .subreddit a{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.sidebar .subreddits .subreddit:hover {
+  background-color: #efefef;
+}
+
+.sidebar .menu-toggle {
+  position: absolute;
+  top: 10px;
+  right: 13px;
+}
+
+.card {
+  width: 100%;
+  min-height: 50px;
+  padding: 5px 10px;
+  margin: 10px 0;
+  border: 1px solid;
+  border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+  border-radius: 3px;
+  background-color: #fff;
+}
+
+.card:first-of-type{
+  margin-top: 0;
+}
+
+.link .title {
+  color: inherit;
+  font-size: 1.4em;
+  margin-right: .4em;
+  padding: 0px;
+  overflow: hidden;
+  color: #3498DB;
+  text-decoration: none;
+}
+
+.link .domain a{
+  color: inherit;
+  text-decoration: none;
+}
+
+.link .domain a:hover {
+  text-decoration: underline;
+}
+
+.link .rank {
+  float: left;
+  width: 2.2ex;
+  margin-top: 10px;
+  color: #c6c6c6;
+  font-size: 1.4em;
+  text-align: right;
+}
+
+.link .vote {
+  font-size: 1.4em;
+  text-align: center;
+}
+
+.link .score {
+  float: left;
+  height: 100%;
+  width: 4.1ex;
+  margin: 10px 7px 0;
+  color: #c6c6c6;
+  background: transparent;
+  overflow: hidden;
+}
+
+.link .thumbnail {
+  float: left;
+  font-size: 0;
+  margin: 0;
+  margin-right: 5px;
+  margin-bottom: 2px;
+  overflow: hidden;
+  width: 70px;
+}
+
+.link .thumbnail img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.link .entry {
+  overflow: hidden;
+  margin-left: 3px;
+}
+
+.link .tagline {
+  margin: 3px 0;
+  color: #888;
+}
+
+.link .author, .link .subreddit {
+  color: #369;
+  text-decoration: none;
+}
+
+.link .author:hover {
+  text-decoration: underline;
+}
+
+.link .linkflairlabel {
+  background: #aaceed;
+  color: #fff;
+  font-size: 11px;
+  line-height: 1em;
+  vertical-align: top;
+  text-align: center;
+  padding: 3px 5px;
+  margin-top: 1px;
+  border-radius: 0;
+  border: 0px;
+  min-width: 58px;
+  max-width: 10em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  margin-right: .5em;
+}
+
+.link .nsfwtag {
+  background: #d10023;
+  color: #fff;
+  font-size: 11px;
+  line-height: 1em;
+  vertical-align: top;
+  text-align: center;
+  padding: 3px 5px;
+  margin-top: 1px;
+  border-radius: 0;
+  border: 0px;
+  min-width: 58px;
+  max-width: 10em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  margin-right: .5em;
+}
+
+.panestack-title {
+  margin-bottom: 5px;
+}
+
+.comment .tagline {
+  font-size: 1.2em;
+}
+
+.comment {
+  margin: 0 0 8px 0;
+}
+
+.comment .score {
+  font-size: 1.2em;
+  width: auto;
+  margin-top: 25px;
+  min-width: 3ex;
+  margin-right: 3px;
+  height: 100%;
+  display: block;
+}
+
+.comment .midcol {
+  margin-left: 0px;
+  width: 15px;
+}
+
+.comment .entry {
+  overflow: hidden;
+  margin-left: 3px;
+  opacity: 1;
+}
+
+.comment .child {
+  border-left: 1px dotted #ECECEC;
+  margin-top: 0px;
+  margin-left: 15px;
+}
+
+.comment .child .comment {
+  padding: 4px;
+  margin: 12px 0 0 0;
+}
+
+.md {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.md em {
+  font-style: italic;
+  font-weight: inherit;
+}
+
+.comment .usertext-body {
+  font-size: 1.4em;
+}
+
+.md blockquote, .md del {
+  color: #4f4f4f;
+}
+
+.md tr, .md code, .md .-cells, .md .-lists, .md .-blocks, .md .-headers, .md h1, .md h2, .md h3, .md h4, .md h5, .md h6, .md th, .md td, .md ul, .md ol, .md .-lists, .md pre, .md blockquote, .md table, .md p, .md ul, .md ol {
+  margin: 0;
+  padding: 0;
+}
+
+.md .-blocks, .md .-lists, .md pre, .md blockquote, .md table, .md p, .md ul, .md ol {
+  margin-top: 0.35714285714285715em;
+  margin-bottom: 0.35714285714285715em;
+}
+
+.md textarea, .md .-text, .md p, .md pre>code, .md th, .md td, .md li {
+  font-size: 1em;
+  line-height: 1.4285714285714286em;
+}
+
+.md>:first-child, .md .-cells>:first-child, .md .-lists>:first-child, .md .-blocks>:first-child, .md .-headers>:first-child, .md h1>:first-child, .md h2>:first-child, .md h3>:first-child, .md h4>:first-child, .md h5>:first-child, .md h6>:first-child, .md th>:first-child, .md td>:first-child, .md ul>:first-child, .md ol>:first-child, .md .-lists>:first-child, .md pre>:first-child, .md blockquote>:first-child, .md table>:first-child, .md p>:first-child, .md ul>:first-child, .md ol>:first-child {
+  margin-top: 0;
+}
+
+.md>:last-child, .md .-cells>:last-child, .md .-lists>:last-child, .md .-blocks>:last-child, .md .-headers>:last-child, .md h1>:last-child, .md h2>:last-child, .md h3>:last-child, .md h4>:last-child, .md h5>:last-child, .md h6>:last-child, .md th>:last-child, .md td>:last-child, .md ul>:last-child, .md ol>:last-child, .md .-lists>:last-child, .md pre>:last-child, .md blockquote>:last-child, .md table>:last-child, .md p>:last-child, .md ul>:last-child, .md ol>:last-child {
+  margin-bottom: 0;
+}

@@ -1,0 +1,54 @@
+<div class="card" ng-if="controller.errorMessage">
+	<span class="error" ng-bind="controller.errorMessage"></span>
+</div>
+
+<div class="card link">
+	<div class="vote">
+		<div class="score" ng-bind="controller.post.score"></div>
+	</div>
+
+
+	<a class="thumbnail" ng-click="app.setLocation(controller.post.media.oembed.thumbnail_url, true)" 
+	ng-if="controller.post.thumbnail && controller.post.thumbnail != 'self' && controller.post.thumbnail != 'default' && controller.post.thumbnail != 'nsfw'">
+	<img src="{{controller.post.thumbnail}}" alt="{{controller.post.title}}">
+</a>
+
+<div class="entry">
+	<a ng-if="post.data.is_self" class="title" ng-click="app.setLocation('post/'+controller.post.subreddit+'/'+controller.post.id,false)">
+		<span class="linkflairlabel" ng-if="controller.post.link_flair_text" ng-bind="controller.post.link_flair_text"></span> 
+		<span class="nsfwtag" ng-if="controller.post.over_18">NSFW</span> 
+
+		{{controller.post.title}}
+	</a>
+	<a ng-if="!post.data.is_self" class="title" ng-click="app.setLocation(controller.post.url, true)">
+		<span class="linkflairlabel" ng-if="controller.post.link_flair_text" ng-bind="controller.post.link_flair_text"></span> 
+		<span class="nsfwtag" ng-if="controller.post.over_18">NSFW</span> 
+
+		{{controller.post.title}}
+	</a>
+
+	<span class="domain"><a href="" ng-bind="'('+controller.post.domain+')'"></a></span>
+
+	<p class="tagline">submitted by <a ng-click="app.setLocation('http://www.reddit.com/user/' + controller.post.author, true)" class="author" ng-bind="controller.post.author"></a> {{controller.post.created_utc | utcdatetolocal | timeago}}  </p>
+
+	<ul class="flat-list buttons">
+		<li class="first">
+			<a ng-click="app.setLocation('post/'+controller.post.subreddit+'/'+controller.post.id,false)" class="comments may-blank" ng-bind="controller.post.num_comments + ' comments'"></a>
+		</li>
+	</ul>
+</div>
+
+<div class="clear"></div>
+</div>	
+
+<div class="link">
+	<div class="panestack-title">
+		<span class="title" ng-if="!controller.more">top 200 comments</span>
+		<span class="title" ng-if="controller.more">top 500 comments</span>
+		<span ng-if="!controller.more" ng-click="app.setLocation('post/'+controller.post.subreddit+'/'+controller.post.id+'/more',false)" class="title-button">show 500</span>
+	</div>
+	<div class="comments">
+		<div ng-repeat="comment in controller.comments track by comment.data.id" class="comment card" ng-include="'commentTree'">
+		</div>
+	</div>
+</div>
