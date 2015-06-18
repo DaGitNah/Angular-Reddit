@@ -3,7 +3,7 @@
 angular.module('myApp.postview', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/post/:sub/:id/:more?', {
+  $routeProvider.when('/post/:sub/:id/:limit?', {
     templateUrl: 'postview/postview.html',
     controller: 'postviewCtrl as controller'
   });
@@ -14,9 +14,9 @@ angular.module('myApp.postview', ['ngRoute'])
 
 	self.subreddit = $routeParams.sub;
 	self.id = $routeParams.id;
-	self.more = $routeParams.more ? true : false;
+	self.limit = $routeParams.limit ? $routeParams.limit : 200;
 
-	redditApiService.getPost(this.subreddit, this.id, $routeParams.more).success(function (data, status, headers, config){
+	redditApiService.getPost(this.subreddit, this.id, self.limit).success(function (data, status, headers, config){
 		self.post = data[0].data.children[0].data;
 		self.comments = data[1].data.children;
 

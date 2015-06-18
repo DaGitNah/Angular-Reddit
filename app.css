@@ -382,6 +382,10 @@ html.menu-open .sidebar {
   margin-bottom: 5px;
 }
 
+tree {
+  float: left;
+}
+
 .comment .tagline {
   font-size: 1.2em;
 }
@@ -418,8 +422,8 @@ html.menu-open .sidebar {
 }
 
 .comment .child .comment {
-  padding: 4px;
-  margin: 12px 0 0 0;
+  padding: 4px 4px 0;
+  margin: 0;
 }
 
 .md {

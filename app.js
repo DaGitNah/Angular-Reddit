@@ -1,7 +1,7 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('myApp', [
+var app = angular.module('myApp', [
 	'ngRoute',
 	'myApp.subview',
 	'myApp.postview',
@@ -82,8 +82,8 @@ angular.module('myApp', [
 		})
 	}
 
-	redditApi.getPost = function(sub, id, more) {
-		var url = more ? 'http://www.reddit.com/r/'+sub+'/comments/'+id+'/.json?jsonp=JSON_CALLBACK' : 'http://www.reddit.com/r/'+sub+'/comments/'+id+'/.json?jsonp=JSON_CALLBACK&limit=500';
+	redditApi.getPost = function(sub, id, limit) {
+		var url = 'http://www.reddit.com/r/'+sub+'/comments/'+id+'/.json?jsonp=JSON_CALLBACK&limit='+limit
 		return $http({
 			method: 'JSONP',
 			url: url
@@ -125,4 +125,45 @@ angular.module('myApp', [
 	return function(input) {
 		return $.timeago(input);
 	}
-});	
+})
+.factory('RecursionHelper', ['$compile', function($compile){
+	return {
+        /**
+         * Manually compiles the element, fixing the recursion loop.
+         * @param element
+         * @param [link] A post-link function, or an object with function(s) registered via pre and post properties.
+         * @returns An object containing the linking functions.
+         */
+         compile: function(element, link){
+            // Normalize the link parameter
+            if(angular.isFunction(link)){
+            	link = { post: link };
+            }
+
+            // Break the recursion loop by removing the contents
+            var contents = element.contents().remove();
+            var compiledContents;
+            return {
+            	pre: (link && link.pre) ? link.pre : null,
+                /**
+                 * Compiles and re-adds the contents
+                 */
+                 post: function(scope, element){
+                    // Compile the contents
+                    if(!compiledContents){
+                    	compiledContents = $compile(contents);
+                    }
+                    // Re-add the compiled contents to the element
+                    compiledContents(scope, function(clone){
+                    	element.append(clone);
+                    });
+
+                    // Call the post-linking function, if any
+                    if(link && link.post){
+                    	link.post.apply(null, arguments);
+                    }
+                }
+            };
+        }
+    };
+}]);

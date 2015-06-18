@@ -78,26 +78,5 @@
     <script src="components/version/version.js"></script>
     <script src="components/version/version-directive.js"></script>
     <script src="components/version/interpolate-filter.js"></script>
-
-    <script type="text/ng-template" id="commentTree">
-      <span class="score" ng-bind="comment.data.score"></span>
-        <div class="entry">
-          <p class="tagline">
-            <span ng-click="app.setLocation('http://www.reddit.com/user/' + comment.data.author, true)" class="author" ng-bind="comment.data.author"></span>
-          </p>
-          <div class="usertext">
-            <div class="usertext-body">
-              <div class="md">
-                <p ng-bind-html="comment.data.body | markdown"></p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div ng-if="comment.data.replies" class="child">
-            <div ng-repeat="comment in comment.data.replies.data.children" ng-include="'commentTree'" class="comment">           
-            </div>
-        </div>
-    </script>
   </body>
 </html>

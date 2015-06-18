@@ -45,10 +45,12 @@
 	<div class="panestack-title">
 		<span class="title" ng-if="!controller.more">top 200 comments</span>
 		<span class="title" ng-if="controller.more">top 500 comments</span>
-		<span ng-if="!controller.more" ng-click="app.setLocation('post/'+controller.post.subreddit+'/'+controller.post.id+'/more',false)" class="title-button">show 500</span>
+		<span ng-if="!controller.more" ng-click="app.setLocation('post/'+controller.post.subreddit+'/'+controller.post.id+'/500',false)" class="title-button">show 500</span>
 	</div>
 	<div class="comments">
-		<div ng-repeat="comment in controller.comments track by comment.data.id" class="comment card" ng-include="'commentTree'">
-		</div>
+		<!-- <div ng-repeat="comment in controller.comments track by comment.data.id" class="comment card" ng-include="'commentTree'">
+		</div> -->
+		<tree class="comment card" ng-repeat="comments in controller.comments" comment="comments"></tree>
+		<div class="clear"></div>
 	</div>
 </div>
