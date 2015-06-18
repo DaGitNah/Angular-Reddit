@@ -142,7 +142,12 @@ html.loading .loader {
   vertical-align: middle;
 }
 
-.headbar .search, .headbar .sort {
+.sort {
+  float: left;
+  margin-left: 5px;
+}
+
+.headbar .search {
   float: left;
 }
 
@@ -150,13 +155,13 @@ html.loading .loader {
   float: right;
 }
 
-.headbar .sort-text {
+.sort-text {
   display: inline-block;
   font-size: 1.4em;
   margin-right: 5px;
 }
 
-.headbar .sort select {
+.sort select {
   max-width: 50%;
   min-width: 100px;
   border: 1px solid rgba(239, 239, 239, 1);
