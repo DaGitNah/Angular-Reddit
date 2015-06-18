@@ -174,15 +174,23 @@ html.loading .loader {
   font-size: 1.2em;
 }
 
-.headbar .search-button {
+.btn {
   width: 75px;
   height: 26px;
-  padding-left: 25px;
-  margin-left: -3px;
   background-color: #4585F4;
   border: none;
   color: #fff;
   font-size: 1.3em;
+  transition: background-color 0.5s;
+}
+
+.btn:hover {
+  background-color: #0854D8;
+}
+
+.headbar .btn-search {
+  padding-left: 25px;
+  margin-left: -3px;
   background-image: url('inc/image/search.png');
   background-size: auto 60%;
   background-position: 5px center;
