@@ -84,6 +84,7 @@ var app = angular.module('myApp', [
 
 	redditApi.getPost = function(sub, id, limit) {
 		var url = 'http://www.reddit.com/r/'+sub+'/comments/'+id+'/.json?jsonp=JSON_CALLBACK&limit='+limit
+
 		return $http({
 			method: 'JSONP',
 			url: url

@@ -7,17 +7,26 @@ app.directive('clickview', ['redditApiService', function(redditApiService) {
 		},
 		template: 
 		'<div>'+
-			'<span ng-if="!html" class="btn-quickshow">View content</span>'+
+			'<span ng-if="showBtn" class="btn-quickshow">View content</span>'+
+			'<span ng-if="showLoader" class="content-loader"> <img src="inc/image/loading.gif" height="50" alt="loading"> </span>'+
 			'<div ng-if="html" ng-bind-html="html | markdown" class="quickshow"></div>'+
 		'</div>',
 		link: function (scope, element, attrs) {
+			scope.showBtn = true;
+			scope.showLoader = false;
+
 			element.on('click', function(){	
+				scope.showBtn = false;
+				scope.showLoader = true;
+
 				redditApiService.getPost(scope.link.subreddit, scope.link.id, 1).success(function (data, status, headers, config){
 					scope.html = data[0].data.children[0].data.selftext;
-					console.log(scope.html)
+					scope.html = (scope.html.length == 0) ? "No self text" : scope.html  
 				}).error(function(data, status, headers, config) {
 					scope.html = 'An error occured, please check your request. Errorcode: '+status;
 
+				}).finally(function() {
+					scope.showLoader = false;
 				});
 				
 			})
