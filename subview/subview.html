@@ -24,7 +24,7 @@
 		</div>
 
 
-		<a class="thumbnail" ng-click="app.setLocation(post.data.media.oembed.thumbnail_url, true)" 
+		<a class="thumbnail" ng-click="app.setLocation(post.data.url, true)" 
 			ng-if="post.data.thumbnail && post.data.thumbnail != 'self' && post.data.thumbnail != 'default' && post.data.thumbnail != 'nsfw'">
 			<img src="{{post.data.thumbnail}}" alt="{{post.data.title}}">
 		</a>
