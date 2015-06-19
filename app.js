@@ -115,7 +115,7 @@ var app = angular.module('myApp', [
 	redditApi.getSubreddits = function() {
 		var url = 'http://www.reddit.com/subreddits/default.json?jsonp=JSON_CALLBACK';
 		host != "localhost" ? url.replace('http://', 'https://') : url;
-		console.log(url)
+		console.log(host != "localhost")
 
 		return $http({
 			method: 'JSONP',
