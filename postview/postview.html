@@ -1,10 +1,10 @@
 <div class="card" ng-if="controller.errorMessage">
-	<span class="error" ng-bind="controller.errorMessage"></span>
+	<span class="error" ng-bind="::controller.errorMessage"></span>
 </div>
 
 <div class="card link">
 	<div class="vote">
-		<div class="score" ng-bind="controller.post.score"></div>
+		<div class="score" ng-bind="::controller.post.score"></div>
 	</div>
 
 	<hoverimage post="controller.post"></hoverimage>
@@ -12,26 +12,26 @@
 	<div class="entry">
 		<a ng-if="controller.post.is_self" class="title" ng-click="app.setLocation('post/'+controller.post.subreddit+'/'+controller.post.id,false)">
 			<span ng-if="controller.post.stickied" class="linkflairlabel stickied">sticky</span> 
-			<span class="linkflairlabel" ng-if="controller.post.link_flair_text" ng-bind="controller.post.link_flair_text"></span> 
+			<span class="linkflairlabel" ng-if="controller.post.link_flair_text" ng-bind="::controller.post.link_flair_text"></span> 
 			<span class="nsfwtag" ng-if="controller.post.over_18">NSFW</span> 
 
-			<span ng-bind-html="controller.post.title"></span>
+			<span ng-bind-html="::controller.post.title"></span>
 		</a>
 		<a ng-if="!controller.post.is_self" class="title" ng-click="app.setLocation(controller.post.url, true)">
 			<span ng-if="controller.post.stickied" class="linkflairlabel stickied">sticky</span> 
-			<span class="linkflairlabel" ng-if="controller.post.link_flair_text" ng-bind="controller.post.link_flair_text"></span> 
+			<span class="linkflairlabel" ng-if="controller.post.link_flair_text" ng-bind="::controller.post.link_flair_text"></span> 
 			<span class="nsfwtag" ng-if="controller.post.over_18">NSFW</span> 
 
 			<span ng-bind-html="controller.post.title"></span>
 		</a>
 
-		<span class="domain"><a href="" ng-bind="'('+controller.post.domain+')'"></a></span>
+		<span class="domain"><a href="" ng-bind="::'('+controller.post.domain+')'"></a></span>
 
-		<p class="tagline">submitted by <a ng-click="app.setLocation('http://www.reddit.com/user/' + controller.post.author, true)" class="author" ng-bind="controller.post.author"></a> {{controller.post.created_utc | utcdatetolocal | timeago}}  </p>
+		<p class="tagline">submitted by <a ng-click="app.setLocation('http://www.reddit.com/user/' + controller.post.author, true)" class="author" ng-bind="::controller.post.author"></a> {{controller.post.created_utc | utcdatetolocal | timeago}}  </p>
 
 		<ul class="flat-list buttons">
 			<li class="first">
-				<a ng-click="app.setLocation('post/'+controller.post.subreddit+'/'+controller.post.id,false)" class="comments may-blank" ng-bind="controller.post.num_comments + ' comments'"></a>
+				<a ng-click="app.setLocation('post/'+controller.post.subreddit+'/'+controller.post.id,false)" class="comments may-blank" ng-bind="::controller.post.num_comments + ' comments'"></a>
 			</li>
 		</ul>
 	</div>

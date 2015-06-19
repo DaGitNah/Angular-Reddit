@@ -17,9 +17,9 @@
 
 <div class="posts">
 	<div class="card link" ng-repeat="post in controller.posts track by $index"  ng-class="{'link-stickied': post.data.stickied}">
-		<div class="rank" ng-bind="$index+1"></div>
+		<div class="rank" ng-bind="::$index+1"></div>
 		<div class="vote">
-			<div class="score" ng-bind="post.data.score"></div>
+			<div class="score" ng-bind="::post.data.score"></div>
 		</div>
 
 		<hoverimage post="post.data"></hoverimage>
@@ -27,21 +27,21 @@
 		<div class="entry">
 			<a ng-if="post.data.is_self" class="title" ng-click="app.setLocation('post/'+post.data.subreddit+'/'+post.data.id,false)">
 				<span ng-if="post.data.stickied" class="linkflairlabel stickied">sticky</span> 
-				<span class="linkflairlabel" ng-if="post.data.link_flair_text" ng-bind="post.data.link_flair_text"></span> 
+				<span class="linkflairlabel" ng-if="post.data.link_flair_text" ng-bind="::post.data.link_flair_text"></span> 
 				<span class="nsfwtag" ng-if="post.data.over_18">NSFW</span> 
-				<span ng-bind-html="post.data.title"></span>
+				<span ng-bind-html="::post.data.title"></span>
 			</a>
 			<a ng-if="!post.data.is_self" class="title" ng-click="app.setLocation(post.data.url, true)">
 				<span ng-if="post.data.stickied" class="linkflairlabel stickied">sticky</span> 
-				<span class="linkflairlabel" ng-if="post.data.link_flair_text" ng-bind="post.data.link_flair_text"></span> 
+				<span class="linkflairlabel" ng-if="post.data.link_flair_text" ng-bind="::post.data.link_flair_text"></span> 
 				<span class="nsfwtag" ng-if="post.data.over_18">NSFW</span> 
-				<span ng-bind-html="post.data.title"></span>
+				<span ng-bind-html="::post.data.title"></span>
 			</a>
 
-			<span class="domain"><a href="" ng-bind="'('+post.data.domain+')'"></a></span>
+			<span class="domain"><a href="" ng-bind="::'('+post.data.domain+')'"></a></span>
 			
 			<p class="tagline">submitted by <a ng-click="app.setLocation('http://www.reddit.com/user/' + post.data.author, true)" class="author" ng-bind="post.data.author"></a>
-				to <a ng-click="app.setLocation('r/'+post.data.subreddit+'/top',false)" class="subreddit" ng-bind="post.data.subreddit"></a> 
+				to <a ng-click="app.setLocation('r/'+post.data.subreddit+'/top',false)" class="subreddit" ng-bind="::post.data.subreddit"></a> 
 				{{post.data.created_utc | utcdatetolocal | timeago}} 
 			</p>
 
@@ -49,7 +49,7 @@
 
 			<ul class="flat-list buttons">
 				<li class="first">
-					<a ng-click="app.setLocation('post/'+post.data.subreddit+'/'+post.data.id,false)" class="comments" ng-bind="post.data.num_comments + ' comments'"></a>
+					<a ng-click="app.setLocation('post/'+post.data.subreddit+'/'+post.data.id,false)" class="comments" ng-bind="::post.data.num_comments + ' comments'"></a>
 				</li>
 			</ul>
 			<clickviewtext link="post.data" ng-if="post.data.is_self"></clickviewtext>

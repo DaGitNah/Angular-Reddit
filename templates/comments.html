@@ -1,14 +1,14 @@
-<span class="score" ng-bind="comment.data.score"></span>
+<span class="score" ng-bind="::comment.data.score"></span>
 <div class="entry">
     <p class="tagline">
-        <span ng-click="app.setLocation('http://www.reddit.com/user/' + comment.data.author, true)" class="author" ng-bind="comment.data.author"></span>
-        <span ng-bind="comment.data.created_utc | utcdatetolocal | timeago"></span>
+        <span ng-click="app.setLocation('http://www.reddit.com/user/' + comment.data.author, true)" class="author" ng-bind="::comment.data.author"></span>
+        <span ng-bind="::comment.data.created_utc | utcdatetolocal | timeago"></span>
     </p> 
     <div class="usertext">
         <div class="usertext">
             <div class="usertext-body">
                 <div class="md">
-                    <p ng-bind-html="comment.data.body | markdown"></p>
+                    <p ng-bind-html="::comment.data.body | markdown"></p>
                 </div>
             </div>
         </div>
