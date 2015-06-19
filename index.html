@@ -73,7 +73,7 @@
           <button ng-click="app.search()" class="btn btn-search">search</button>
         </div>
 
-        <div class="currentsub">Browsing /r/{{app.activeReddit}}</div>
+        <div class="currentsub" ng-bind="'Browsing /r/'+app.activeReddit"></div>
 
         <div class="sort">
           <span class="sort-text">Sort:</span>
