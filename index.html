@@ -50,7 +50,7 @@
       </a>
 
       <ul class="subreddits">
-        <li class="subreddit">
+        <li class="subreddit" ng-class="{'active': app.activeReddit == 'all'}">
           <a ng-click="app.setLocation('r/all', false)">all</a>
         </li>
         <li class="subreddit" ng-repeat="subreddit in app.subreddits" ng-class="{'active': app.activeReddit == subreddit.data.display_name}">
