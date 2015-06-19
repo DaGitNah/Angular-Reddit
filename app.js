@@ -15,7 +15,7 @@ var app = angular.module('myApp', [
 .config(['$routeProvider', function($routeProvider) {
 	$routeProvider.otherwise(
 	{
-		redirectTo: '/r/'
+		redirectTo: '/r/all'
 	});
 }])
 
