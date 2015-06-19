@@ -113,7 +113,7 @@ var app = angular.module('myApp', [
 	}
 
 	redditApi.getSubreddits = function() {
-		var url = 'https://www.reddit.com/subreddits/default.json?jsonp=JSON_CALLBACK';
+		var url = 'http://www.reddit.com/subreddits/default.json?jsonp=JSON_CALLBACK';
 		host != "localhost" ? url.replace('http://', 'https://') : url;
 
 		return $http({
@@ -123,7 +123,7 @@ var app = angular.module('myApp', [
 	}
 
 	redditApi.getSubreddit = function(sub) {
-		var url ='//www.reddit.com/subreddits/search.json?jsonp=JSON_CALLBACK&q='+sub;
+		var url ='http://www.reddit.com/subreddits/search.json?jsonp=JSON_CALLBACK&q='+sub;
 		host != "localhost" ? url.replace('http://', 'https://') : url;
 
 		return $http({
