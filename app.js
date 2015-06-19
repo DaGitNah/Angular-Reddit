@@ -25,7 +25,16 @@ var app = angular.module('myApp', [
 	self.showLoader = true;
 	self.menuOpen = false;
 	self.searchQuery = "";
-	self.activeReddit = $location.path().split('/')[2];
+
+	self.getActiveReddit = function() {
+		return $location.path().split('/')[2];
+	}
+
+	$scope.$on('$locationChangeSuccess', function() {
+		self.activeReddit = self.getActiveReddit();
+	});
+
+	self.activeReddit = self.getActiveReddit();
 
 	self.sort = $location.path().split('/')[3];
 	self.sortTypes = [
