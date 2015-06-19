@@ -31,9 +31,7 @@ footer, header, hgroup, menu, nav, section {
 body {
   line-height: 1;
 }
-ol, ul {
-  list-style: none;
-}
+
 blockquote, q {
   quotes: none;
 }
@@ -503,6 +501,10 @@ tree {
 
 .md>:last-child, .md .-cells>:last-child, .md .-lists>:last-child, .md .-blocks>:last-child, .md .-headers>:last-child, .md h1>:last-child, .md h2>:last-child, .md h3>:last-child, .md h4>:last-child, .md h5>:last-child, .md h6>:last-child, .md th>:last-child, .md td>:last-child, .md ul>:last-child, .md ol>:last-child, .md .-lists>:last-child, .md pre>:last-child, .md blockquote>:last-child, .md table>:last-child, .md p>:last-child, .md ul>:last-child, .md ol>:last-child {
   margin-bottom: 0;
+}
+
+.md .-lists, .md ul, .md ol {
+  padding-left: 40px;
 }
 
 .quickshow {
