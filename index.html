@@ -31,6 +31,9 @@
       </a>
 
       <ul class="subreddits">
+        <li class="subreddit">
+          <a ng-click="app.setLocation('r/all', false)">all</a>
+        </li>
         <li class="subreddit" ng-repeat="subreddit in app.subreddits">
           <a ng-click="app.setLocation('r/'+subreddit.data.display_name, false)" ng-bind="subreddit.data.display_name | lowercase"></a>
         </li>
