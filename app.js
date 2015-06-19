@@ -51,6 +51,7 @@ var app = angular.module('myApp', [
 	});
 
 	self.setLocation = function(location, overwrite) {
+		self.menuOpen = false;
 		overwrite ? window.location = location : $location.path(location);
 	}
 
