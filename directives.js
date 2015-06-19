@@ -51,8 +51,9 @@ app.directive('clickviewtext', ['redditApiService', function(redditApiService) {
 				window.location = scope.post.url
 			});
 
-            element.on('mouseover', function() {
+            element.on('mouseover', function() {					
 				var url;
+				var image = new Image();
 				var isValid = scope.post.url.match(/.+([^\/]$)/);
 				isValid = !scope.post.url.match(/.+(\/a\/).+/);
 
@@ -68,7 +69,16 @@ app.directive('clickviewtext', ['redditApiService', function(redditApiService) {
 
 				isGifv ? 
 				$('.overlay .inner').empty().append('<video autoplay poster="'+scope.post.preview.images[0].source.url+'"><source src="'+url.replace('gifv','webm')+'"></video>') :
-				$('.overlay .inner').empty().append('<img src="'+url+'">');
+				image.src = url;
+
+				image.onload = function() {
+					$('.overlay .inner').empty().append(image);
+				}
+
+				image.onerror = function() {
+					image.src = scope.post.preview ? scope.post.preview.images[0].source.url : scope.post.thumbnail;
+					$('.overlay .inner').empty().append(image);
+				}
 
             	$('.overlay').addClass('active');
 				
@@ -76,7 +86,7 @@ app.directive('clickviewtext', ['redditApiService', function(redditApiService) {
 
             element.on('mouseleave', function() {
             	$('.overlay').removeClass('active');
-            	$('.overlay .inner').empty();
+            	//$('.overlay .inner').empty();
             });
         }
     };
