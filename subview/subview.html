@@ -16,7 +16,7 @@
 </div>
 
 <div class="posts">
-	<div class="card link" ng-repeat="post in controller.posts track by post.data.id">
+	<div class="card link" ng-repeat="post in controller.posts track by $index">
 		<div class="rank" ng-bind="$index+1"></div>
 
 		<div class="vote">
@@ -55,6 +55,7 @@
 		</div>
 
 		<div class="clear"></div>
+		<div ng-if="$index == controller.posts.length-1" in-view="$inview&&controller.loadMore()"></div>
 	</div>
 	<div class="pagination">
 		<button ng-click="app.setLocation('r/'+controller.subreddit+'/'+controller.sort+'/'+controller.time+'/'+controller.first+'/before')" class="btn btn-prev">&lt; prev</button>

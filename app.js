@@ -8,7 +8,8 @@ var app = angular.module('myApp', [
 	'myApp.search',
 	'myApp.version',
 	'ngSanitize',
-	'markdown'
+	'markdown',
+	'angular-inview'
 	])
 
 .config(['$routeProvider', function($routeProvider) {
