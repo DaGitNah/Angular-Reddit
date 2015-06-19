@@ -7,10 +7,7 @@
 		<div class="score" ng-bind="controller.post.score"></div>
 	</div>
 
-	<a class="thumbnail" ng-click="app.setLocation(controller.post.url, true)" 
-		ng-if="controller.post.thumbnail && controller.post.thumbnail != 'self' && controller.post.thumbnail != 'default' && controller.post.thumbnail != 'nsfw'">
-		<img src="{{controller.post.thumbnail}}" alt="{{controller.post.title}}">
-	</a>
+	<hoverimage post="controller.post"></hoverimage>
 
 	<div class="entry">
 		<a ng-if="controller.post.is_self" class="title" ng-click="app.setLocation('post/'+controller.post.subreddit+'/'+controller.post.id,false)">

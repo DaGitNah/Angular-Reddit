@@ -46,15 +46,16 @@ app.directive('clickviewtext', ['redditApiService', function(redditApiService) {
 			post: '='
 		},
 		templateUrl: 'templates/hoverimage.html',
-		link: function(scope,element,attrs) {			
+		link: function(scope,element,attrs) {	
+
 			element.on('click', function() {
 				window.location = scope.post.url
 			});
 
-			if(!scope.post.preview)
-				return;
-
             element.on('mouseover', function() {
+            	if(!scope.post.preview)
+					return;
+
             	$('.overlay .inner').css('background-image', 'url('+scope.post.preview.images[0].source.url+')');
             	$('.overlay').addClass('active');
             });
