@@ -20,7 +20,7 @@
 </div>
 
 <div class="posts">
-	<div class="card link" ng-repeat="post in controller.results track by post.data.id">
+	<div class="card link" id="{{post.data.id}}" ng-repeat="post in controller.results track by post.data.id">
 		<div class="rank" ng-bind="::$index+1"></div>
 
 		<div class="vote">

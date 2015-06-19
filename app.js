@@ -26,6 +26,14 @@ var app = angular.module('myApp', [
 	self.menuOpen = false;
 	self.searchQuery = "";
 
+	self.pathArray = location.href.split( '/' );
+	self.protocol = self.pathArray[0];
+	self.host = self.pathArray[2];
+	self.isSecure = self.protocol == "https" || self.host == "localhost";
+
+	self.sidebarOpen = false;
+	self.hasSidebar = true;
+
 	self.getActiveReddit = function() {
 		return $location.path().split('/')[2];
 	}
@@ -54,10 +62,19 @@ var app = angular.module('myApp', [
 
 	$rootScope.$on("$routeChangeStart", function(event, next, current) {
 		self.showLoader = true;
+		self.hasSidebar = false;
 	});
 
 	$scope.$on('showLoader', function(event, args){
 		self.showLoader = args[0];
+	});
+
+	$scope.$on('sidebar', function(event, args){
+		self.hasSidebar = args;
+	});
+
+	$scope.$on('sidebar-toggle', function(event, args){
+		self.sidebarOpen = args;
 	});
 
 	self.setLocation = function(event, location, overwrite) {
@@ -134,7 +151,7 @@ var app = angular.module('myApp', [
 	}
 
 	redditApi.getSubreddit = function(sub) {
-		var url ='http://www.reddit.com/subreddits/search.json?jsonp=JSON_CALLBACK&q='+sub;
+		var url ='http://www.reddit.com/r/'+sub+'/about.json?jsonp=JSON_CALLBACK';
 		url = host != "localhost" ? url.replace('http://', '//') : url;
 
 		return $http({

@@ -3,7 +3,14 @@
 <!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> 
-<html lang="en" ng-app="myApp" ng-controller="appCtrl as app" class="no-js" ng-class="{'menu-open': app.menuOpen, 'loading': app.showLoader}"> 
+<html lang="en" ng-app="myApp" ng-controller="appCtrl as app" class="no-js"
+  ng-class="{
+  'menu-open': app.menuOpen, 
+  'loading': app.showLoader, 
+  'login-open': app.showLogin,
+  'hasSidebar': app.hasSidebar,
+  'sidebar-open': app.sidebarOpen
+  }"> 
 <!--<![endif]-->
   <head>
     <meta charset="utf-8">

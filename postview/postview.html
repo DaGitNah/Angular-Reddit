@@ -1,3 +1,12 @@
+<div class="sub-info" ng-if="controller.subInfo">
+	<a ng-click="controller.toggleSidebar()" class="sidebar-toggle">
+        <img src="inc/image/menu_toggle.png" alt="toggle sidebar">
+  	</a>
+
+  	<div class="sub-title" ng-bind="'/r/'+controller.subInfo.display_name | lowercase"></div>
+  	<div class="sub-text md" ng-bind-html="controller.subInfo.description | markdown"></div>
+</div>
+
 <div class="loader">
     <img src="inc/image/loading.gif" alt="loader">
 </div>
@@ -6,7 +15,7 @@
 	<span class="error" ng-bind="::controller.errorMessage"></span>
 </div>
 
-<div class="card link">
+<div class="card link" id="{{controller.post.id}}">
 	<div class="vote">
 		<div class="score" ng-bind="::controller.post.score"></div>
 	</div>
@@ -46,9 +55,7 @@
 		<span ng-if="controller.limit < 500" ng-click="app.setLocation($event, 'post/'+controller.post.subreddit+'/'+controller.post.id+'/500',false)" class="btn-showmore">show 500</span>
 	</div>
 	<div class="comments">
-		<!-- <div ng-repeat="comment in controller.comments track by comment.data.id" class="comment card" ng-include="'commentTree'">
-	</div> -->
-	<tree class="comment card" ng-repeat="comments in controller.comments" comment="comments"></tree>
-	<div class="clear"></div>
-</div>
+		<tree class="comment card" ng-repeat="comments in controller.comments" comment="comments"></tree>
+		<div class="clear"></div>
+	</div>
 </div>

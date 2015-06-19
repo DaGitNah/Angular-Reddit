@@ -20,7 +20,7 @@
 </div>
 
 <div class="posts">
-	<div class="card link" ng-repeat="post in controller.posts track by $index"  ng-class="{'link-stickied': post.data.stickied}">
+	<div class="card link" id="{{post.data.id}}" ng-repeat="post in controller.posts track by $index"  ng-class="{'link-stickied': post.data.stickied}">
 		<div class="rank" ng-bind="::$index+1"></div>
 		<div class="vote">
 			<div class="score" ng-bind="::post.data.score"></div>
