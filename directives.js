@@ -47,27 +47,24 @@ app.directive('clickviewtext', ['redditApiService', function(redditApiService) {
 		},
 		templateUrl: 'templates/hoverimage.html',
 		link: function(scope,element,attrs) {	
-
 			element.on('click', function() {
 				window.location = scope.post.url
 			});
 
             element.on('mouseover', function() {
-            	if(!scope.post.preview)
-					return;
-
 				var url;
 				var isValid = scope.post.url.match(/.+([^\/]$)/);
+				isValid = !scope.post.url.match(/.+(\/a\/).+/);
 
 				if(!isValid){
-					url = scope.post.preview.images[0].source.url
+					url = scope.post.preview ? scope.post.preview.images[0].source.url : scope.post.thumbnail
 				} else {
 					var hasExtension = scope.post.url.match(/([^\/]*)(jpg|jpeg|png|gif|webm|gifv)$/) != null;
 					var url = hasExtension ? scope.post.url : scope.post.url + '.jpg';
 					var isGifv = url.match(/(gifv|webm|)$/)[1].length > 3;
-
-
 				}
+
+
 
 				isGifv ? 
 				$('.overlay .inner').empty().append('<video autoplay poster="'+scope.post.preview.images[0].source.url+'"><source src="'+url.replace('gifv','webm')+'"></video>') :
