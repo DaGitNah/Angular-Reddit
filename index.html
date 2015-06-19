@@ -53,7 +53,7 @@
         <li class="subreddit">
           <a ng-click="app.setLocation('r/all', false)">all</a>
         </li>
-        <li class="subreddit" ng-repeat="subreddit in app.subreddits">
+        <li class="subreddit" ng-repeat="subreddit in app.subreddits" ng-class="{'active': app.activeReddit == subreddit.data.display_name}">
           <a ng-click="app.setLocation('r/'+subreddit.data.display_name, false)" ng-bind="subreddit.data.display_name | lowercase"></a>
         </li>
       </ul>

@@ -249,7 +249,11 @@ html.menu-open .sidebar {
   min-height: 20px;
   line-height: 20px;
   font-size: 1.4em;
-  padding: 3px 10px;
+  padding: 5px 10px;
+}
+
+.sidebar .subreddits .subreddit.active {
+  background-color: #D7D7D7;
 }
 
 .sidebar .subreddits .subreddit a{
