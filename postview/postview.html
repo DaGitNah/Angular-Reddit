@@ -12,7 +12,7 @@
 	</div>
 
 	<hoverimage post="controller.post"></hoverimage>
-
+ 
 	<div class="entry">
 		<a ng-if="controller.post.is_self" class="title" href="{{controller.post.url}}" ng-click="app.setLocation($event, 'post/'+controller.post.subreddit+'/'+controller.post.id,false)">
 			<span ng-if="controller.post.stickied" class="linkflairlabel stickied">sticky</span> 
@@ -28,16 +28,13 @@
 
 			<span ng-bind-html="controller.post.title"></span>
 		</a>
-
-		<span class="domain"><a href="" ng-bind="::'('+controller.post.domain+')'"></a></span>
+		
+		<span class="domain"><a href="" ng-bind="'('+controller.post.domain+')'"></a></span>
 
 		<p class="tagline">submitted by <a ng-click="app.setLocation($event, 'http://www.reddit.com/user/' + controller.post.author, true)" class="author" ng-bind="::controller.post.author"></a> {{controller.post.created_utc | utcdatetolocal | timeago}}  </p>
 
-		<ul class="flat-list buttons">
-			<li class="first">
-				<a ng-click="app.setLocation($event, 'post/'+controller.post.subreddit+'/'+controller.post.id,false)" class="comments may-blank" ng-bind="::controller.post.num_comments + ' comments'"></a>
-			</li>
-		</ul>
+		<div ng-if="controller.post.html" ng-bind-html="controller.post.html | markdown" class="quickshow"></div>
+		<div ng-if="controller.post.selftext" ng-bind-html="controller.post.selftext | markdown" class="quickshow"></div>
 	</div>
 
 	<div class="clear"></div>

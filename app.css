@@ -521,6 +521,10 @@ tree {
   border-radius: 5px;
 }
 
+.quickshow * {
+  line-height: 150%;
+}
+
 .btn-quickshow {
   cursor: pointer;
 }
