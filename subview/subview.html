@@ -16,9 +16,8 @@
 </div>
 
 <div class="posts">
-	<div class="card link" ng-repeat="post in controller.posts track by $index">
+	<div class="card link" ng-repeat="post in controller.posts track by $index"  ng-class="{'link-stickied': post.data.stickied}">
 		<div class="rank" ng-bind="$index+1"></div>
-
 		<div class="vote">
 			<div class="score" ng-bind="post.data.score"></div>
 		</div>
@@ -27,11 +26,13 @@
 		
 		<div class="entry">
 			<a ng-if="post.data.is_self" class="title" ng-click="app.setLocation('post/'+post.data.subreddit+'/'+post.data.id,false)">
+				<span ng-if="post.data.stickied" class="linkflairlabel stickied">sticky</span> 
 				<span class="linkflairlabel" ng-if="post.data.link_flair_text" ng-bind="post.data.link_flair_text"></span> 
 				<span class="nsfwtag" ng-if="post.data.over_18">NSFW</span> 
 				<span ng-bind-html="post.data.title"></span>
 			</a>
 			<a ng-if="!post.data.is_self" class="title" ng-click="app.setLocation(post.data.url, true)">
+				<span ng-if="post.data.stickied" class="linkflairlabel stickied">sticky</span> 
 				<span class="linkflairlabel" ng-if="post.data.link_flair_text" ng-bind="post.data.link_flair_text"></span> 
 				<span class="nsfwtag" ng-if="post.data.over_18">NSFW</span> 
 				<span ng-bind-html="post.data.title"></span>
