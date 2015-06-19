@@ -307,7 +307,7 @@ html.menu-open .sidebar {
 .link .score {
   float: left;
   height: 100%;
-  width: 4.1ex;
+  min-width: 4.1ex;
   margin: 10px 7px 0;
   color: #c6c6c6;
   background: transparent;
