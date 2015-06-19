@@ -60,7 +60,7 @@
 		</div>
 
 		<div class="clear"></div>
-		<div ng-if="$index == controller.posts.length-1" in-view="$inview&&controller.loadMore()"></div>
+		<div ng-if="$index == controller.posts.length-5" in-view="$inview&&controller.loadMore()"></div>
 	</div>
 	<div class="pagination">
 		<button ng-click="app.setLocation('r/'+controller.subreddit+'/'+controller.sort+'/'+controller.time+'/'+controller.first+'/before')" class="btn btn-prev">&lt; prev</button>
