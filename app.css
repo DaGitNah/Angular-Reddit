@@ -84,6 +84,16 @@ body {
   font: 0 0/0;
 }
 
+p.browsehappy {
+  z-index: 999;
+  position: absolute;
+  font-size: 2em;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  background-color: #fff;
+}
+
 .view {
   position: relative;
   width: 100%;
