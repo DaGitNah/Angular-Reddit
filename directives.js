@@ -39,6 +39,33 @@ app.directive('clickviewtext', ['redditApiService', function(redditApiService) {
 	};
 }])
 
+.directive("hoverimage", function($location) {
+	return {
+		restrict: "E",
+		scope: {
+			post: '='
+		},
+		templateUrl: 'templates/hoverimage.html',
+		link: function(scope,element,attrs) {			
+			element.on('click', function() {
+				window.location = scope.post.url
+			});
+
+			if(!scope.post.preview)
+				return;
+
+            element.on('mouseover', function() {
+            	$('.overlay .inner').css('background-image', 'url('+scope.post.preview.images[0].source.url+')');
+            	$('.overlay').addClass('active');
+            });
+
+            element.on('mouseleave', function() {
+            	$('.overlay').removeClass('active')
+            });
+        }
+    };
+})
+
 .directive("tree", function(RecursionHelper) {
 	return {
 		restrict: "E",
