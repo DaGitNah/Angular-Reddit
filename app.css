@@ -223,7 +223,8 @@ html.menu-open .sidebar {
 
 .sidebar .subreddits {
   height: 100%;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .sidebar .subreddits .subreddit {
@@ -288,6 +289,7 @@ html.menu-open .sidebar {
   float: left;
   width: 2.2ex;
   margin-top: 10px;
+  margin-left: 5px;
   color: #c6c6c6;
   font-size: 1.4em;
   text-align: right;
@@ -496,4 +498,16 @@ tree {
 
 .btn-showmore:hover {
   cursor: pointer;
+}
+
+@media only screen and (max-width: 660px) {
+  .sort {
+    float: left;
+    width: 100%;
+    margin-top: 5px;
+  }
+
+  .link .thumbnail {
+    display: none;
+  }
 }
