@@ -86,7 +86,7 @@ app.directive('clickviewtext', ['redditApiService', function(redditApiService) {
 
             element.on('mouseleave', function() {
             	$('.overlay').removeClass('active');
-            	//$('.overlay .inner').empty();
+            	$('.overlay .inner').empty();
             });
         }
     };

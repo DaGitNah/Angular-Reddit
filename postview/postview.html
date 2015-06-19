@@ -14,14 +14,14 @@
 	<hoverimage post="controller.post"></hoverimage>
 
 	<div class="entry">
-		<a ng-if="controller.post.is_self" class="title" ng-click="app.setLocation('post/'+controller.post.subreddit+'/'+controller.post.id,false)">
+		<a ng-if="controller.post.is_self" class="title" href="{{controller.post.url}}" ng-click="app.setLocation($event, 'post/'+controller.post.subreddit+'/'+controller.post.id,false)">
 			<span ng-if="controller.post.stickied" class="linkflairlabel stickied">sticky</span> 
 			<span class="linkflairlabel" ng-if="controller.post.link_flair_text" ng-bind="::controller.post.link_flair_text"></span> 
 			<span class="nsfwtag" ng-if="controller.post.over_18">NSFW</span> 
 
 			<span ng-bind-html="::controller.post.title"></span>
 		</a>
-		<a ng-if="!controller.post.is_self" class="title" ng-click="app.setLocation(controller.post.url, true)">
+		<a ng-if="!controller.post.is_self" class="title" href="{{controller.post.url}}" ng-click="app.setLocation($event, controller.post.url, true)">
 			<span ng-if="controller.post.stickied" class="linkflairlabel stickied">sticky</span> 
 			<span class="linkflairlabel" ng-if="controller.post.link_flair_text" ng-bind="::controller.post.link_flair_text"></span> 
 			<span class="nsfwtag" ng-if="controller.post.over_18">NSFW</span> 
@@ -31,11 +31,11 @@
 
 		<span class="domain"><a href="" ng-bind="::'('+controller.post.domain+')'"></a></span>
 
-		<p class="tagline">submitted by <a ng-click="app.setLocation('http://www.reddit.com/user/' + controller.post.author, true)" class="author" ng-bind="::controller.post.author"></a> {{controller.post.created_utc | utcdatetolocal | timeago}}  </p>
+		<p class="tagline">submitted by <a ng-click="app.setLocation($event, 'http://www.reddit.com/user/' + controller.post.author, true)" class="author" ng-bind="::controller.post.author"></a> {{controller.post.created_utc | utcdatetolocal | timeago}}  </p>
 
 		<ul class="flat-list buttons">
 			<li class="first">
-				<a ng-click="app.setLocation('post/'+controller.post.subreddit+'/'+controller.post.id,false)" class="comments may-blank" ng-bind="::controller.post.num_comments + ' comments'"></a>
+				<a ng-click="app.setLocation($event, 'post/'+controller.post.subreddit+'/'+controller.post.id,false)" class="comments may-blank" ng-bind="::controller.post.num_comments + ' comments'"></a>
 			</li>
 		</ul>
 	</div>
@@ -46,7 +46,7 @@
 <div class="link">
 	<div class="panestack-title">
 		<span class="title" ng-if="controller.limit">top {{controller.limit}} comments</span>
-		<span ng-if="controller.limit < 500" ng-click="app.setLocation('post/'+controller.post.subreddit+'/'+controller.post.id+'/500',false)" class="btn-showmore">show 500</span>
+		<span ng-if="controller.limit < 500" ng-click="app.setLocation($event, 'post/'+controller.post.subreddit+'/'+controller.post.id+'/500',false)" class="btn-showmore">show 500</span>
 	</div>
 	<div class="comments">
 		<!-- <div ng-repeat="comment in controller.comments track by comment.data.id" class="comment card" ng-include="'commentTree'">
