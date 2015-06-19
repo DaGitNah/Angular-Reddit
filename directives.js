@@ -55,13 +55,22 @@ app.directive('clickviewtext', ['redditApiService', function(redditApiService) {
             element.on('mouseover', function() {
             	if(!scope.post.preview)
 					return;
+				
+				var hasExtension = scope.post.url.match(/(jpg|jpeg|png|gif|webm|gifv)$/) != null;
+				var url = hasExtension ? scope.post.url : scope.post.url + '.jpg';
+				var isGifv = false;
+				url.match(/(gifv|webm|)$/)[1].length > 3 ? isGifv = true : isGifv = false;
 
-            	$('.overlay .inner').css('background-image', 'url('+scope.post.preview.images[0].source.url+')');
+				isGifv ? 
+				$('.overlay .inner').empty().append('<video autoplay poster="'+scope.post.preview.images[0].source.url+'"><source src="'+url.replace('gifv','webm')+'"></video>') :
+				$('.overlay .inner').empty().append('<img src="'+url+'">');
+
             	$('.overlay').addClass('active');
             });
 
             element.on('mouseleave', function() {
-            	$('.overlay').removeClass('active')
+            	$('.overlay').removeClass('active');
+            	$('.overlay .inner').empty();
             });
         }
     };
