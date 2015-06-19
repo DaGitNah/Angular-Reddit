@@ -83,7 +83,7 @@ var app = angular.module('myApp', [
 	redditApi.getPosts = function(sub, sort, time, last, direction) {
 		var url = last ? 'http://www.reddit.com/r/' + sub + '/'+ sort +'.json?jsonp=JSON_CALLBACK&t='+time+'&'+direction+'='+last+'&count=25' : 'http://www.reddit.com/r/' + sub + '/'+ sort +'.json?jsonp=JSON_CALLBACK&t='+time
 
-		host != "localhost" ? url.replace('http://', 'https://') : url;
+		url = host != "localhost" ? url.replace('http://', 'https://') : url;
 
 		return $http({
 			method: 'JSONP',
@@ -94,7 +94,7 @@ var app = angular.module('myApp', [
 	redditApi.getPost = function(sub, id, limit) {
 		var url = 'http://www.reddit.com/r/'+sub+'/comments/'+id+'/.json?jsonp=JSON_CALLBACK&limit='+limit
 
-		host != "localhost" ? url.replace('http://', 'https://') : url;
+		url = host != "localhost" ? url.replace('http://', 'https://') : url;
 
 		return $http({
 			method: 'JSONP',
@@ -104,7 +104,7 @@ var app = angular.module('myApp', [
 
 	redditApi.getSearchResults = function(query, sort) {
 		var url = 'http://www.reddit.com/search.json?q='+query+'&t='+sort+'&jsonp=JSON_CALLBACK';
-		host != "localhost" ? url.replace('http://', 'https://') : url;
+		url = host != "localhost" ? url.replace('http://', 'https://') : url;
 
 		return $http({
 			method: 'JSONP',
@@ -114,8 +114,7 @@ var app = angular.module('myApp', [
 
 	redditApi.getSubreddits = function() {
 		var url = 'http://www.reddit.com/subreddits/default.json?jsonp=JSON_CALLBACK';
-		host != "localhost" ? url.replace('http://', 'https://') : url;
-		console.log(host != "localhost")
+		url = host != "localhost" ? url.replace('http://', 'https://') : url;
 
 		return $http({
 			method: 'JSONP',
@@ -125,7 +124,7 @@ var app = angular.module('myApp', [
 
 	redditApi.getSubreddit = function(sub) {
 		var url ='http://www.reddit.com/subreddits/search.json?jsonp=JSON_CALLBACK&q='+sub;
-		host != "localhost" ? url.replace('http://', 'https://') : url;
+		url = host != "localhost" ? url.replace('http://', 'https://') : url;
 
 		return $http({
 			method: 'JSONP',
