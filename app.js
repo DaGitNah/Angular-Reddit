@@ -9,7 +9,9 @@ var app = angular.module('myApp', [
 	'myApp.version',
 	'ngSanitize',
 	'markdown',
-	'angular-inview'
+	'angular-inview',
+	'angulartics',
+	'angulartics.google.analytics'
 	])
 
 .config(['$routeProvider', function($routeProvider) {
