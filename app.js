@@ -37,6 +37,7 @@ var app = angular.module('myApp', [
 
 	self.sidebarOpen = false;
 	self.hasSidebar = true;
+	self.stickyHeader = true;
 
 	self.getActiveReddit = function() {
 		return $location.path().split('/')[2];

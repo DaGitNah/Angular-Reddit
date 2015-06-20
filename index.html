@@ -11,7 +11,8 @@
   'hasSidebar': app.hasSidebar,
   'sidebar-open': app.sidebarOpen,
   'no-cards': app.disableCards,
-  'mobile': app.isMobile
+  'mobile': app.isMobile,
+  'sticky-header': app.stickyHeader
   }"> 
 <!--<![endif]-->
   <head>
@@ -89,6 +90,9 @@
         </div>
         <div class="card-toggle">
           <label>Disable cards:<input type="checkbox" ng-model="app.disableCards"></label>
+        </div>
+         <div class="headbar-toggle">
+          <label>Sticky header:<input type="checkbox" ng-model="app.stickyHeader"></label>
         </div>
       </div>
     </div>

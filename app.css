@@ -155,7 +155,7 @@ html.loading .loader {
 }
 
 .headbar {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   display: table;
@@ -168,6 +168,10 @@ html.loading .loader {
 
   transition: all 0.5s;
   z-index: 9;
+}
+
+.sticky-header .headbar {
+  position: fixed;
 }
 
 .headbar .view {
@@ -186,6 +190,20 @@ html.loading .loader {
 
 .headbar .sort {
   float: right;
+}
+
+.headbar .headbar-toggle {
+  float: right;
+  font-size: 1.4em;
+  margin-right: 5px;
+  line-height: 200%;
+  margin-right: 10px;
+}
+
+.headbar .headbar-toggle input {
+  border: none;
+  width: auto;
+  margin-left: 5px;
 }
 
 .headbar .card-toggle {
