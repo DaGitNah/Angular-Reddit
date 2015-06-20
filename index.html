@@ -46,7 +46,7 @@
     <link rel="stylesheet" href="app.css">
     <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
   </head>
-  <body>
+  <body style="font-size: {{app.fontSize}}%;">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -76,9 +76,10 @@
           <button ng-click="app.search()" class="btn btn-search">search</button>
         </div>
 
-        <div class="currentsub" ng-bind="'Browsing /r/'+app.activeReddit"></div>
+        <div class="currentsub" ng-bind="'Browsing '+app.activeReddit"></div>
 
-        
+        <a class="settings" href ng-click="app.setLocation($event, 'settings', false, true)">Settings</a>
+
         <div class="sort">
           <span class="sort-text">Sort:</span>
           <select ng-model="app.sort" ng-change="app.setSort()">
@@ -87,12 +88,6 @@
             <option value="new">new</option>
             <option value="controversial">controversial</option>
           </select>
-        </div>
-        <div class="card-toggle">
-          <label>Disable cards:<input type="checkbox" ng-model="app.disableCards"></label>
-        </div>
-         <div class="headbar-toggle">
-          <label>Sticky header:<input type="checkbox" ng-model="app.stickyHeader"></label>
         </div>
       </div>
     </div>

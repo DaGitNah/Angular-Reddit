@@ -192,34 +192,6 @@ html.loading .loader {
   float: right;
 }
 
-.headbar .headbar-toggle {
-  float: right;
-  font-size: 1.4em;
-  margin-right: 5px;
-  line-height: 200%;
-  margin-right: 10px;
-}
-
-.headbar .headbar-toggle input {
-  border: none;
-  width: auto;
-  margin-left: 5px;
-}
-
-.headbar .card-toggle {
-  float: right;
-  font-size: 1.4em;
-  margin-right: 5px;
-  line-height: 200%;
-  margin-right: 10px;
-}
-
-.headbar .card-toggle input {
-  border: none;
-  width: auto;
-  margin-left: 5px;
-}
-
 .sort-text {
   display: inline-block;
   font-size: 1.4em;
@@ -242,8 +214,8 @@ html.loading .loader {
 }
 
 .btn {
-  width: 75px;
-  height: 26px;
+  min-width: 75px;
+  min-height: 26px;
   background-color: #4585F4;
   box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   border: none;
@@ -717,6 +689,49 @@ tree {
 }
 
 /*****************************/
+/*        Settings           */
+/*****************************/
+a.settings {
+  float: right;
+  font-size: 1.4em;
+  color: #333;
+  line-height: 200%;
+  padding: 0;
+}
+
+div.settings {
+  font-size: 1.4em;
+  padding: 15px;
+}
+
+.headbar-toggle {
+  float: left;
+  margin-right: 5px;
+  line-height: 200%;
+  margin-right: 10px;
+}
+
+.headbar-toggle input {
+  border: none;
+  width: auto;
+  margin-left: 5px;
+}
+
+.card-toggle {
+  float: left;
+  margin-right: 5px;
+  line-height: 200%;
+  margin-right: 10px;
+}
+
+.card-toggle input {
+  border: none;
+  width: auto;
+  margin-left: 5px;
+}
+
+
+/*****************************/
 /*          mobile           */
 /*****************************/
 @media only screen and (max-width: 670px) {
@@ -724,7 +739,7 @@ tree {
     top: 168px;
   }
 
-  .headbar .currentsub, .headbar .sort, .headbar .card-toggle, .headbar .headbar-toggle {
+  .headbar .currentsub, .headbar .sort {
     float: left;
     width: 100%;
   }

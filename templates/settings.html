@@ -1,0 +1,16 @@
+<div class="card settings">
+	<p> Adjust your settings </p>
+
+	<div class="checkboxes">
+		<div class="card-toggle">
+        	<label>Disable cards:<input type="checkbox" ng-model="app.disableCards"></label>
+	    </div>
+	    <div class="headbar-toggle">
+	    	<label>Sticky header:<input type="checkbox" ng-model="app.stickyHeader"></label>
+	    </div>
+	</div>
+	
+	<input type="text" ng-model="app.fontSize" ng-bind="app.fontSize"></input>
+
+    <div class="clear"></div>
+</div>

@@ -15,6 +15,10 @@ var app = angular.module('myApp', [
 	])
 
 .config(['$routeProvider', function($routeProvider) {
+	$routeProvider.when('/settings', {
+		templateUrl: 'templates/settings.html'
+	});
+
 	$routeProvider.otherwise(
 	{
 		redirectTo: '/r/all'
@@ -29,6 +33,7 @@ var app = angular.module('myApp', [
 	self.searchQuery = "";
 	self.disableCards = false;
 	self.isMobile = Modernizr.touch || $(window).width() < 500;
+	self.fontSize = "62.5"
 
 	self.pathArray = location.href.split( '/' );
 	self.protocol = self.pathArray[0];
@@ -40,7 +45,7 @@ var app = angular.module('myApp', [
 	self.stickyHeader = true;
 
 	self.getActiveReddit = function() {
-		return $location.path().split('/')[2];
+		return $location.path().split('/')[2] || $location.path().split('/')[1];
 	}
 
 	$scope.$on('$locationChangeSuccess', function() {
@@ -51,10 +56,10 @@ var app = angular.module('myApp', [
 
 	self.sort = $location.path().split('/')[3];
 	self.sortTypes = [
-	'top',
-	'hot',
-	'controversial',
-	'new'
+		'top',
+		'hot',
+		'controversial',
+		'new'
 	];
 
 	redditApiService.getSubreddits().success(function (data, status, headers, config){
@@ -108,7 +113,7 @@ var app = angular.module('myApp', [
 	}
 
 	self.setSort = function() {
-		$location.path('r/'+ $location.path().split('/')[2]+ '/' + self.sort);
+		$location.path().split('/')[2] ? $location.path('r/'+ $location.path().split('/')[2] + '/' + self.sort) : false;
 	}
 
 	self.search = function() {
@@ -116,7 +121,7 @@ var app = angular.module('myApp', [
 		if(query.length == 0)
 			return;
 
-		self.setLocation('search/'+query, false)
+		self.setLocation(null, 'search/'+query, false)
 	}
 })
 
