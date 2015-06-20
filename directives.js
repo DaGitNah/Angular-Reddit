@@ -96,7 +96,9 @@ app.directive('clickviewtext', ['redditApiService', function(redditApiService) {
 	return {
 		restrict: "E",
 		scope: {
-			comment: '='
+			comment: '=',
+			app: '=',
+			controller: '='
 		},
 		templateUrl: 'templates/comments.html',
 		compile: function(element) {

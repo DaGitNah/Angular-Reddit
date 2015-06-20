@@ -507,6 +507,7 @@ html.sidebar-open .sub-info {
 
 .panestack-title {
   margin-bottom: 5px;
+  margin-top: 10px;
 }
 
 tree {
@@ -551,6 +552,11 @@ tree {
 .comment .child .comment {
   padding: 4px 4px 0;
   margin: 0;
+}
+
+.comment .flat-list a {
+  text-decoration: none;
+  color: #888;
 }
 
 .md {

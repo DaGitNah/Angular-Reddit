@@ -13,10 +13,15 @@
             </div>
         </div>
     </div>
+    <ul class="flat-list buttons">
+        <li class="first">
+            <a href="http://www.reddit.com{{controller.post.permalink}}" ng-click="app.setLocation($event, 'http://www.reddit.com'+controller.post.permalink, true, true)">Comment on reddit</a>
+        </li>
+    </ul>
 </div>
 <div ng-if="comment.data.replies" class="child">
     <div ng-repeat="comment in comment.data.replies.data.children" ng-if="comment.data.replies.data.children[0].data.body" class="comment">
-        <tree class="comment" comment="comment"></tree>
+        <tree class="comment" comment="comment" app="app" controller="controller"></tree>
         <div class="clear"></div>
     </div>
 </div>

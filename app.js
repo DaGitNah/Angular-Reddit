@@ -79,7 +79,8 @@ var app = angular.module('myApp', [
 		self.sidebarOpen = args;
 	});
 
-	self.setLocation = function(event, location, overwrite) {
+	self.setLocation = function(event, location, overwrite, newtab) {
+		newtab = newtab || false;
 		event = event || window.event;
 		var button = event.which || event.button;
 
@@ -91,7 +92,11 @@ var app = angular.module('myApp', [
 		if(button == 2)
 			return;
 		
-		overwrite ? window.location = location : $location.path(location);
+		overwrite ? 
+			newtab ? 
+				window.open(location, '_blank')
+				: window.location = location 
+			: $location.path(location);
 	}
 
 	self.toggleMenu = function() {
