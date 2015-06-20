@@ -40,14 +40,16 @@ angular.module('myApp.subview', ['ngRoute'])
 		});
 	}
 
-	redditApiService.getSubreddit(this.subreddit).success(function (data, status, headers, config){
-		self.subInfo = data.data;
-		$scope.$emit('sidebar', true);
-	}).error(function(data, status, headers, config) {
-		self.errorMessage = 'An error occured while loading the subreddit info, please check your request. Errorcode: '+status;
+	if(self.subreddit != "all") {
+		redditApiService.getSubreddit(this.subreddit).success(function (data, status, headers, config){
+			self.subInfo = data.data;
+			$scope.$emit('sidebar', true);
+		}).error(function(data, status, headers, config) {
+			self.errorMessage = 'An error occured while loading the subreddit info, please check your request. Errorcode: '+status;
 
-	});
-
+		});
+	}
+	
 	self.toggleSidebar = function() {
 		self.sidebarOpen = !self.sidebarOpen;
 		$scope.$emit('sidebar-toggle', self.sidebarOpen);
