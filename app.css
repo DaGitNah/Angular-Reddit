@@ -64,8 +64,8 @@ html * {
 }
 
 html, body {
-  width: 100%;
-  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
   background-color: #e5e5e5;
 }
 
@@ -704,32 +704,87 @@ div.settings {
   padding: 15px;
 }
 
-.headbar-toggle {
-  float: left;
-  margin-right: 5px;
-  line-height: 200%;
-  margin-right: 10px;
+div.settings input[type="checkbox"] {
+  border: none;
+  box-shadow: none;
+  width: auto;
+  margin-left: 5px;
 }
 
-.headbar-toggle input {
+div.settings .checkboxes {
+  margin: 10px 0;
+}
+
+div.settings .checkboxes > div:not(.clear) {
+  float: left;
+  margin-right: 20px;
+}
+
+div.settings .checkbox:not(:first-of-type) input{
+  float: left;
   border: none;
   width: auto;
   margin-left: 5px;
 }
 
-.card-toggle {
-  float: left;
-  margin-right: 5px;
-  line-height: 200%;
-  margin-right: 10px;
+.donate {
+  margin-top: 20px;
 }
 
-.card-toggle input {
-  border: none;
-  width: auto;
-  margin-left: 5px;
+.donate .donate-image {
+  width: 150px;
+  margin-top: 10px;
 }
 
+/*****************************/
+/*         nightmode         */
+/*****************************/
+
+.nightmode body {
+  background-color: #4F4F4F;  
+}
+
+.nightmode .sidebar {
+  background-color: #818181;
+  border-right: #767676;
+}
+
+.nightmode .headbar {
+  background-color: #A1A1A1;
+}
+
+.nightmode .card {
+  background-color: #A1A1A1;
+  color: #fff;
+}
+
+.nightmode select {
+  color: #333;
+}
+
+.nightmode .link .title {
+  color: #fff;
+}
+
+.nightmode .link .score {
+  color: #E7E7E7;
+}
+
+.nightmode .link .rank {
+  color: #E7E7E7;
+}
+
+.nightmode .link .tagline {
+  color: #E2E2E2;
+}
+
+.nightmode .link .author, .nightmode .link .subreddit {
+  color: #FFF;
+}
+
+.nightmode .md a {
+  color: #FFF;
+}
 
 /*****************************/
 /*          mobile           */

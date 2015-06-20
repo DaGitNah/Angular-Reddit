@@ -3,6 +3,8 @@
     <p class="tagline">
         <span ng-click="app.setLocation('http://www.reddit.com/user/' + comment.data.author, true)" class="author" ng-bind="::comment.data.author"></span>
         <span ng-bind="::comment.data.created_utc | utcdatetolocal | timeago"></span>
+        -
+        <span ng-click="collapse()">collapse</span>
     </p> 
     <div class="usertext">
         <div class="usertext">
