@@ -1,3 +1,13 @@
+<div class="sub-info" ng-if="controller.subInfo">
+	<a ng-click="controller.toggleSidebar()" class="sidebar-toggle">
+        <img src="inc/image/menu_toggle.png" alt="toggle sidebar">
+  	</a>
+
+  	<div class="sub-title" ng-bind="'/r/'+controller.subInfo.display_name | lowercase"></div>
+  	<div class="sub-text md" ng-bind-html="controller.subInfo.description | markdown"></div>
+</div>
+
+
 <div class="loader">
     <img src="inc/image/loading.gif" alt="loader">
 </div>

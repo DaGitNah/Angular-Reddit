@@ -11,7 +11,7 @@ angular.module('myApp.subview', ['ngRoute'])
 
 }])
 
-.controller('subviewCtrl', function($scope, $routeParams, redditApiService) {
+.controller('subviewCtrl', function($rootScope, $scope, $routeParams, redditApiService) {
 	var self = this;
 
 	self.subreddit = $routeParams.sub ? $routeParams.sub : 'all';
@@ -39,6 +39,23 @@ angular.module('myApp.subview', ['ngRoute'])
 			self.busy = false;
 		});
 	}
+
+	redditApiService.getSubreddit(this.subreddit).success(function (data, status, headers, config){
+		self.subInfo = data.data;
+		$scope.$emit('sidebar', true);
+	}).error(function(data, status, headers, config) {
+		self.errorMessage = 'An error occured while loading the subreddit info, please check your request. Errorcode: '+status;
+
+	});
+
+	self.toggleSidebar = function() {
+		self.sidebarOpen = !self.sidebarOpen;
+		$scope.$emit('sidebar-toggle', self.sidebarOpen);
+	};
+
+	$rootScope.$on("$routeChangeStart", function(event, next, current) {
+		self.sidebarOpen = false;
+	});
 
 	redditApiService.getPosts(this.subreddit, this.sort, this.time, this.last, self.direction).success(function (data, status, headers, config){
 		self.posts = data.data.children;
