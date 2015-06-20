@@ -78,7 +78,11 @@ var app = angular.module('myApp', [
 	});
 
 	self.setLocation = function(event, location, overwrite) {
-		event.preventDefault();
+		event = event || window.event;
+		var button = event.which || event.button;
+
+		if(button == 1)
+			event.preventDefault();
 		
 		self.menuOpen = false;
 		overwrite ? window.location = location : $location.path(location);
