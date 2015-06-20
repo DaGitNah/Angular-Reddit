@@ -814,6 +814,10 @@ div.settings .changelog ul{
     margin: 3px 0;
   }
 
+  .headbar .settings {
+    float: left;
+  }
+
   .link .thumbnail {
     display: none;
   }
