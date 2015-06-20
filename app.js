@@ -33,7 +33,8 @@ var app = angular.module('myApp', [
 	self.searchQuery = "";
 	self.disableCards = false;
 	self.isMobile = Modernizr.touch || $(window).width() < 500;
-	self.fontSize = "62.5"
+	self.fontSize = "62.5";
+	self.nightmode = false;
 
 	self.pathArray = location.href.split( '/' );
 	self.protocol = self.pathArray[0];
