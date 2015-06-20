@@ -249,8 +249,13 @@ html.menu-open .sidebar {
           transform: translate(0, 0);
 }
 
+html.menu-open .subreddits {
+  pointer-events: auto;
+}
+
 .sidebar .subreddits {
   height: 100%;
+  pointer-events: none;
   overflow-x: hidden;
   overflow-y: auto;
 }
