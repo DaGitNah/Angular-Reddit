@@ -745,7 +745,7 @@ div.settings .changelog ul{
 }
 
 /*****************************/
-/*         nightmode         */
+/*         1         */
 /*****************************/
 
 .nightmode body {
@@ -792,6 +792,10 @@ div.settings .changelog ul{
 
 .nightmode .md a {
   color: #FFF;
+}
+
+.nightmode .sort select {
+  color: #333;
 }
 
 /*****************************/
