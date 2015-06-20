@@ -721,7 +721,7 @@ tree {
 /*****************************/
 @media only screen and (max-width: 670px) {
   .view.content {
-    top: 139px;
+    top: 168px;
   }
 
   .headbar .currentsub, .headbar .sort, .headbar .card-toggle, .headbar .headbar-toggle {
@@ -742,6 +742,6 @@ tree {
   }
 
   .sub-info {
-    top: 139px;
+    top: 168px;
   }
 }
