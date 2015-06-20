@@ -67,6 +67,7 @@ var app = angular.module('myApp', [
 	$rootScope.$on("$routeChangeStart", function(event, next, current) {
 		self.showLoader = true;
 		self.hasSidebar = false;
+		self.sidebarOpen = false;
 	});
 
 	$scope.$on('showLoader', function(event, args){
