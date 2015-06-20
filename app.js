@@ -26,6 +26,7 @@ var app = angular.module('myApp', [
 	self.menuOpen = false;
 	self.searchQuery = "";
 	self.disableCards = false;
+	self.isMobile = Modernizr.touch || $(window).width() < 500;
 
 	self.pathArray = location.href.split( '/' );
 	self.protocol = self.pathArray[0];

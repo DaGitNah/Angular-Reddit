@@ -118,6 +118,10 @@ p.browsehappy {
   padding-right: 65px;
 }
 
+.mobile .view.content {
+  padding-right: 15px;
+}
+
 .error {
   font-size: 1.4em;
   color: red;
@@ -326,6 +330,10 @@ html.menu-open .sidebar .subreddits {
           transform: translate(300px, 0);
   transition: all 0.5s ease-in-out;
   z-index: 10;
+}
+
+.mobile .sub-info {
+  display: none;
 }
 
 html.sidebar-open .sub-info {
@@ -686,14 +694,29 @@ tree {
 /*****************************/
 /*          mobile           */
 /*****************************/
-@media only screen and (max-width: 660px) {
-  .sort {
+@media only screen and (max-width: 670px) {
+  .view.content {
+    top: 139px;
+  }
+
+  .headbar .currentsub, .headbar .sort, .headbar .card-toggle {
     float: left;
     width: 100%;
-    margin-top: 5px;
+  }
+
+  .headbar .sort {
+    margin: 0;
+  }
+
+  .headbar .currentsub {
+    margin: 3px 0;
   }
 
   .link .thumbnail {
     display: none;
+  }
+
+  .sub-info {
+    top: 139px;
   }
 }
