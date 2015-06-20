@@ -85,6 +85,10 @@ var app = angular.module('myApp', [
 			event.preventDefault();
 		
 		self.menuOpen = false;
+
+		if(button == 2)
+			return;
+		
 		overwrite ? window.location = location : $location.path(location);
 	}
 
