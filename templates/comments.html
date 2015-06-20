@@ -15,7 +15,7 @@
     </div>
     <ul class="flat-list buttons">
         <li class="first">
-            <a href="http://www.reddit.com{{controller.post.permalink}}" ng-click="app.setLocation($event, 'http://www.reddit.com'+controller.post.permalink, true, true)">Comment on reddit</a>
+            <a href="http://www.reddit.com{{controller.post.permalink}}{{comment.data.id}}" ng-click="app.setLocation($event, 'http://www.reddit.com'+controller.post.permalink+comment.data.id, true, true)">Comment on reddit</a>
         </li>
     </ul>
 </div>
