@@ -744,4 +744,12 @@ tree {
   .sub-info {
     top: 168px;
   }
+
+  .comment.card {
+    width: auto;
+  }
+
+  .comments .md {
+    min-width: 300px;
+  }
 }
