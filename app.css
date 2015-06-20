@@ -183,10 +183,23 @@ html.loading .loader {
   float: right;
 }
 
+.headbar .card-toggle {
+  float: right;
+  font-size: 1.4em;
+  margin-right: 5px;
+  line-height: 200%;
+  margin-right: 10px;
+}
+
+.headbar .card-toggle input {
+  border: none;
+  width: auto;
+  margin-left: 5px;
+}
+
 .sort-text {
   display: inline-block;
   font-size: 1.4em;
-  margin-right: 5px;
 }
 
 .sort select {
@@ -340,6 +353,11 @@ html.sidebar-open .sub-info {
   border-color: #e5e6e9 #dfe0e4 #d0d1d5;
   border-radius: 3px;
   background-color: #fff;
+}
+
+.no-cards .card {
+  margin: 0;
+  border: none;
 }
 
 .card:first-of-type{

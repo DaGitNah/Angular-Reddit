@@ -25,6 +25,7 @@ var app = angular.module('myApp', [
 	self.showLoader = true;
 	self.menuOpen = false;
 	self.searchQuery = "";
+	self.disableCards = false;
 
 	self.pathArray = location.href.split( '/' );
 	self.protocol = self.pathArray[0];

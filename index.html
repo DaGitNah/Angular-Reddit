@@ -9,7 +9,8 @@
   'loading': app.showLoader, 
   'login-open': app.showLogin,
   'hasSidebar': app.hasSidebar,
-  'sidebar-open': app.sidebarOpen
+  'sidebar-open': app.sidebarOpen,
+  'no-cards': app.disableCards
   }"> 
 <!--<![endif]-->
   <head>
@@ -69,12 +70,13 @@
     <div class="headbar">
       <div class="view">
         <div class="search">
-          <input ng-model="app.searchQuery" class="search-query" placeholder="Search Reddit">
+          <input type="text" ng-model="app.searchQuery" class="search-query" placeholder="Search Reddit">
           <button ng-click="app.search()" class="btn btn-search">search</button>
         </div>
 
         <div class="currentsub" ng-bind="'Browsing /r/'+app.activeReddit"></div>
 
+        
         <div class="sort">
           <span class="sort-text">Sort:</span>
           <select ng-model="app.sort" ng-change="app.setSort()">
@@ -83,6 +85,9 @@
             <option value="new">new</option>
             <option value="controversial">controversial</option>
           </select>
+        </div>
+        <div class="card-toggle">
+          <label>Disable cards:<input type="checkbox" ng-model="app.disableCards"></label>
         </div>
       </div>
     </div>
