@@ -361,6 +361,7 @@ html.sidebar-open .sub-info {
 .no-cards .card {
   margin: 0;
   border: none;
+  border-radius: 0;
 }
 
 .card:first-of-type{
