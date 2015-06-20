@@ -724,7 +724,7 @@ tree {
     top: 139px;
   }
 
-  .headbar .currentsub, .headbar .sort, .headbar .card-toggle {
+  .headbar .currentsub, .headbar .sort, .headbar .card-toggle, .headbar .headbar-toggle {
     float: left;
     width: 100%;
   }
