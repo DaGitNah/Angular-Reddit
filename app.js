@@ -31,12 +31,40 @@ var app = angular.module('myApp', [
 	self.showLoader = true;
 	self.menuOpen = false;
 	self.searchQuery = "";
-	self.disableCards = Cookies.get('disableCards') || false;
 	self.isMobile = Modernizr.touch || $(window).width() < 500;
-	self.fontSize = Cookies.get('fontSize') || "62.5";
-	self.nightmode = Cookies.get('nightmode') || false;
-	self.stickyHeader = Cookies.get('stickyHeader') || true;
+	if (Cookies.get('stickyHeader') == undefined)
+		Cookies.set('stickyHeader', true, {expires: 10000});
 
+
+	self.disableCards = Cookies.get('disableCards') === "true";
+	self.stickyHeader = Cookies.get('stickyHeader') === "true";
+	self.nightmode = Cookies.get('nightmode') === "true";
+	self.fontSize =  Cookies.get('fontSize') || "62.5";
+
+	$scope.$watch(angular.bind(this, function (disableCards) {
+	  return this.disableCards;
+	}), function (value) {
+		Cookies.set('disableCards', value, {expires: 10000});
+	});
+
+	$scope.$watch(angular.bind(this, function (stickyHeader) {
+	  return this.stickyHeader;
+	}), function (value) {
+		Cookies.set('stickyHeader', value, {expires: 10000});
+	});
+
+	$scope.$watch(angular.bind(this, function (nightmode) {
+	  return this.nightmode;
+	}), function (value) {
+		Cookies.set('nightmode', value, {expires: 10000});
+	});
+
+	$scope.$watch(angular.bind(this, function (fontSize) {
+	  return this.fontSize;
+	}), function (value) {
+		Cookies.set('fontSize', value, {expires: 10000});
+	});
+	
 	self.pathArray = location.href.split('/');
 	self.protocol = self.pathArray[0];
 	self.host = self.pathArray[2];
@@ -44,30 +72,6 @@ var app = angular.module('myApp', [
 
 	self.sidebarOpen = false;
 	self.hasSidebar = true;
-
-	$scope.$watch(angular.bind(this, function (nightmode) {
-	  return this.nightmode;
-	}), function (value) {
-		Cookies.set('nightmode', value);
-	});
-
-	$scope.$watch(angular.bind(this, function (disableCards) {
-	  return this.disableCards;
-	}), function (value) {
-		Cookies.set('disableCards', value);
-	});
-
-	$scope.$watch(angular.bind(this, function (fontSize) {
-	  return this.fontSize;
-	}), function (value) {
-		Cookies.set('fontSize', value);
-	});
-
-	$scope.$watch(angular.bind(this, function (stickyHeader) {
-	  return this.stickyHeader;
-	}), function (value) {
-		Cookies.set('stickyHeader', value);
-	});
 
 	self.getActiveReddit = function() {
 		return $location.path().split('/')[2] || $location.path().split('/')[1];
