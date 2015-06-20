@@ -736,6 +736,13 @@ div.settings .checkbox:not(:first-of-type) input{
   margin-top: 10px;
 }
 
+div.settings .changelog {
+  margin-top: 10px;
+}
+div.settings .changelog ul{
+  padding-left: 10px;
+}
+
 /*****************************/
 /*         nightmode         */
 /*****************************/
