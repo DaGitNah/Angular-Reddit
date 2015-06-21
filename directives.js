@@ -72,12 +72,12 @@ app.directive('clickviewtext', ['redditApiService', function(redditApiService) {
 				image.src = url;
 
 				image.onload = function() {
-					$('.overlay .inner').empty().append(image);
+					$('.overlay .inner').empty().append('<div class="overlay-image" style="background-image: url(\''+url+'\');"></div>');
 				}
 
 				image.onerror = function() {
-					image.src = scope.post.preview ? scope.post.preview.images[0].source.url : scope.post.thumbnail;
-					$('.overlay .inner').empty().append(image);
+					var src = scope.post.preview ? scope.post.preview.images[0].source.url : scope.post.thumbnail;
+					$('.overlay .inner').empty().append('<div class="overlay-image" style="background-image: url(\''+src+'\');"></div>');
 				}
 
             	$('.overlay').addClass('active');
