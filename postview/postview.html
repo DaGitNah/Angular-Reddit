@@ -25,14 +25,14 @@
 	<div class="entry">
 		<a ng-if="controller.post.is_self" class="title" href="{{controller.post.url}}" ng-click="app.setLocation($event, 'post/'+controller.post.subreddit+'/'+controller.post.id,false)">
 			<span ng-if="controller.post.stickied" class="linkflairlabel stickied">sticky</span> 
-			<span class="linkflairlabel" ng-if="controller.post.link_flair_text" ng-bind="::controller.post.link_flair_text"></span> 
+			<span class="linkflairlabel" ng-if="controller.post.link_flair_text" ng-bind-html="::controller.post.link_flair_text"></span> 
 			<span class="nsfwtag" ng-if="controller.post.over_18">NSFW</span> 
 
 			<span ng-bind-html="::controller.post.title"></span>
 		</a>
 		<a ng-if="!controller.post.is_self" class="title" href="{{controller.post.url}}" ng-click="app.setLocation($event, controller.post.url, true)">
 			<span ng-if="controller.post.stickied" class="linkflairlabel stickied">sticky</span> 
-			<span class="linkflairlabel" ng-if="controller.post.link_flair_text" ng-bind="::controller.post.link_flair_text"></span> 
+			<span class="linkflairlabel" ng-if="controller.post.link_flair_text" ng-bind-html="::controller.post.link_flair_text"></span> 
 			<span class="nsfwtag" ng-if="controller.post.over_18">NSFW</span> 
 
 			<span ng-bind-html="controller.post.title"></span>
