@@ -103,7 +103,23 @@ var app = angular.module('myApp', [
 		self.showLoader = true;
 		self.hasSidebar = false;
 		self.sidebarOpen = false;
+
+		if(current && current.loadedTemplateUrl == "subview/subview.html") {
+			Cookies.set('lastPage', $(window).scrollTop());
+			console.log('cookie set', Cookies.get('lastPage'))
+		}
 	});
+
+	$rootScope.$on("$routeChangeSuccess", function(event, current, previous){
+		$rootScope.actualLocation = $location.path();
+	});
+
+	$rootScope.$watch(function () {return $location.path()}, function (newLocation, oldLocation) {
+        if($rootScope.actualLocation === newLocation) {
+
+          	//Cookies.remove('lastPage');
+        }
+    });
 
 	$scope.$on('showLoader', function(event, args){
 		self.showLoader = args[0];

@@ -22,6 +22,9 @@ angular.module('myApp.subview', ['ngRoute'])
 	self.busy = false;
 
 	self.loadMore = function() {
+		if(self.busy)
+			return;
+
 		self.busy = true;
 
 		redditApiService.getPosts(this.subreddit, this.sort, this.time, this.last, 'after').success(function (data, status, headers, config){
@@ -63,6 +66,9 @@ angular.module('myApp.subview', ['ngRoute'])
 		self.posts = data.data.children;
 		self.last = data.data.children[data.data.children.length - 1].data.name;
 		self.first = data.data.children[0].data.name;
+
+		if(Cookies.get('lastPage'))
+			$(window).scrollTop(Cookies.get('lastPage'))
 
 	}).error(function(data, status, headers, config) {
 		self.errorMessage = 'An error occured, please check your request. Errorcode: '+status;
