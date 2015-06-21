@@ -104,7 +104,15 @@ app.directive('clickviewtext', ['redditApiService', function(redditApiService) {
 		compile: function(element) {
             // Use the compile function from the RecursionHelper,
             // And return the linking function(s) which it returns
-            return RecursionHelper.compile(element);
+            return RecursionHelper.compile(element, function(scope, iElement, iAttrs, controller, transcludeFn){
+               	scope.isCollapsed = false;
+               	scope.collapseText = "collapse"
+
+               	scope.collapse = function() {
+               		scope.isCollapsed = !scope.isCollapsed;
+               		scope.collapseText = scope.isCollapsed ? "open" : "collapse";
+               	}
+            });
         }
     };
 });

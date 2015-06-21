@@ -535,10 +535,18 @@ tree {
   opacity: 1;
 }
 
+.comment .entry.collapsed .usertext {
+  display: none;
+}
+
 .comment .child {
   border-left: 1px dotted #ECECEC;
   margin-top: 0px;
   margin-left: 15px;
+}
+
+.comment .child.collapsed {
+  display: none;
 }
 
 .comment .child .comment {
