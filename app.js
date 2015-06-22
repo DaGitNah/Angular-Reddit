@@ -32,8 +32,12 @@ var app = angular.module('myApp', [
 	self.menuOpen = false;
 	self.searchQuery = "";
 	self.isMobile = Modernizr.touch || $(window).width() < 500;
+
+	// Default settings to true
 	if (Cookies.get('stickyHeader') == undefined)
 		Cookies.set('stickyHeader', true, {expires: 10000});
+	if (Cookies.get('scrollToPosition') == undefined)
+		Cookies.set('scrollToPosition', true, {expires: 10000});
 
 
 	self.disableCards = Cookies.get('disableCards') === "true";
