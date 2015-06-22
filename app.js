@@ -12,8 +12,9 @@ var app = angular.module('myApp', [
 	'angular-inview',
 	'angulartics',
 	'angulartics.google.analytics'
-	])
+])
 
+// Declare main routes, view routes are handled in the controller for the view
 .config(['$routeProvider', function($routeProvider) {
 	$routeProvider.when('/settings', {
 		templateUrl: 'templates/settings.html'
@@ -25,31 +26,36 @@ var app = angular.module('myApp', [
 	});
 }])
 
+// Main controller, binds to html, serves as a root level controller
 .controller('appCtrl', function($scope, $rootScope, $location, $routeParams, redditApiService) {
 
+	// initialize variables
 	var self = this;
-	self.showLoader = true;
-	self.menuOpen = false;
-	self.searchQuery = "";
-	self.isMobile = Modernizr.touch || $(window).width() < 500;
+	self.showLoader = true; // Shows the loader
+	self.menuOpen = false; // Side menu open
+	self.searchQuery = ""; // Search query
+	self.isMobile = Modernizr.touch || $(window).width() < 500; // Mobile device
+	self.sidebarOpen = false; // Subreddit sidebar open
+	self.hasSidebar = true; // Subreddit has sidebar
 
-	// Default settings to true
+	// Set cookies for default settings to true
 	if (Cookies.get('stickyHeader') == undefined)
 		Cookies.set('stickyHeader', true, {expires: 10000});
 	if (Cookies.get('scrollToPosition') == undefined)
 		Cookies.set('scrollToPosition', true, {expires: 10000});
 
+	// Read settings from cookies. Cookies returns a string instead of boolean, therefore the conversion
+	self.disableCards = Cookies.get('disableCards') === "true"; // Disable cards design
+	self.stickyHeader = Cookies.get('stickyHeader') === "true"; // Header sticks to top
+	self.nightmode = Cookies.get('nightmode') === "true"; // Nightmode design
+	self.fontSize =  Cookies.get('fontSize') || "62.5"; // Fontsize
+	self.scrollToPosition = Cookies.get('scrollToPosition') === "true"; // Scroll back to position after using back button
 
-	self.disableCards = Cookies.get('disableCards') === "true";
-	self.stickyHeader = Cookies.get('stickyHeader') === "true";
-	self.nightmode = Cookies.get('nightmode') === "true";
-	self.fontSize =  Cookies.get('fontSize') || "62.5";
-	self.scrollToPosition = Cookies.get('scrollToPosition') === "true";
-
+	// Enable watchers to update cookies
 	$scope.$watch(angular.bind(this, function (scrollToPosition) {
-	  return this.scrollToPosition;
+	  return this.scrollToPosition; // Return the variable
 	}), function (value) {
-		Cookies.set('scrollToPosition', value, {expires: 10000});
+		Cookies.set('scrollToPosition', value, {expires: 10000}); // Set the cookie, 10000 so it doesn't expire soon
 	});
 
 	$scope.$watch(angular.bind(this, function (disableCards) {
@@ -75,27 +81,23 @@ var app = angular.module('myApp', [
 	}), function (value) {
 		Cookies.set('fontSize', value, {expires: 10000});
 	});
-	
-	self.pathArray = location.href.split('/');
-	self.protocol = self.pathArray[0];
-	self.host = self.pathArray[2];
-	self.isSecure = self.protocol == "https" || self.host == "localhost";
 
-	self.sidebarOpen = false;
-	self.hasSidebar = true;
+	// Get URL segments info
+	self.pathArray = location.href.split('/');
+	self.protocol = self.pathArray[0]; // Protocol, ex: https
+	self.host = self.pathArray[2]; // Host
+	self.isSecure = self.protocol == "https" || self.host == "localhost"; // isSecure is true if we're on https
 
 	self.getActiveReddit = function() {
-		return $location.path().split('/')[2] || $location.path().split('/')[1];
+		return $location.path().split('/')[2] || $location.path().split('/')[1]; // If /r/<subreddit> take <subreddit> else take the first argument
 	}
 
 	$scope.$on('$locationChangeSuccess', function() {
-		self.activeReddit = self.getActiveReddit();
+		self.activeReddit = self.getActiveReddit(); // Get the current subreddit
 	});
 
-	self.activeReddit = self.getActiveReddit();
-
-	self.sort = $location.path().split('/')[3];
-	self.sortTypes = [
+	self.sort = $location.path().split('/')[3]; // Get the sort param
+	self.sortTypes = [ // Available sort types
 		'top',
 		'hot',
 		'controversial',
@@ -103,17 +105,17 @@ var app = angular.module('myApp', [
 	];
 
 	redditApiService.getSubreddits().success(function (data, status, headers, config){
-		self.subreddits = data.data.children;
+		self.subreddits = data.data.children; // Get initial subreddits (/r/all)
 	})
 
 	if(self.sortTypes.indexOf(self.sort) == -1){
-		self.sort = "hot";
+		self.sort = "hot"; // Overwrite if a non-valid sort is chosen
 	}
 
 	$rootScope.$on("$routeChangeStart", function(event, next, current) {
-		self.showLoader = true;
-		self.hasSidebar = false;
-		self.sidebarOpen = false;
+		self.showLoader = true; // Show the loader 
+		self.sidebarOpen = false; // Close the sidebar
+		self.hasSidebar = false; // Hide the sidebar
 
 		if(!current)
 			return;
@@ -121,10 +123,12 @@ var app = angular.module('myApp', [
 		if(current.loadedTemplateUrl != "subview/subview.html")
 			return;
 
+		// If the user switches away from the subreddit view set the cookie to store the scrollPos
 		Cookies.set('lastPage', $(window).scrollTop());
 	});
 
 	$rootScope.$on("$routeChangeSuccess", function(event, current, previous) {
+		// Fixes a bug where scrollTop would be the same as lastPage cookie while it isn't scrolled
 		$(window).scrollTop(0);
 
 		if(current.loadedTemplateUrl != "subview/subview.html")
@@ -141,58 +145,74 @@ var app = angular.module('myApp', [
 	})
 
     self.setScrollTop = function() {
+    	// Tries scrolling to the last saved position
     	if($(window).scrollTop() != Cookies.get('lastPage')) {
     		$(window).scrollTop(Cookies.get('lastPage'));
     		setTimeout(self.setScrollTop, 1000)
     	} else {
+    		// Removes the cookie
     		Cookies.remove('lastPage')
     	}
     }
 
 	$scope.$on('showLoader', function(event, args){
+		// Global listener to show loader
 		self.showLoader = args[0];
 	});
 
 	$scope.$on('sidebar', function(event, args){
+		// Global listener to show subreddit sidebar
 		self.hasSidebar = args;
 	});
 
 	$scope.$on('sidebar-toggle', function(event, args){
+		// Global listener to open subreddit sidebar
 		self.sidebarOpen = args;
 	});
 
 	self.setLocation = function(event, location, overwrite, newtab) {
-		newtab = newtab || false;
+		// Custom location redirecter because angular can't handle it very well
+		
+		// Safety checks
+		newtab = newtab || false; 
 		event = event || window.event;
 		var button = event.which || event.button;
 
-		if(button == 1)
+		// Prevent left and middle mouse actions
+		if(button == 1 || button == 2)
 			event.preventDefault();
 		
+		// Close the sidebar
 		self.menuOpen = false;
-
-		if(button == 2)
-			return;
 		
+		// Is the overwrite parameter set (used for external routing)
 		overwrite ? 
+			// Is the new tab parameter set 
 			newtab ? 
+				// Open in new tab
 				window.open(location, '_blank')
+				// Open in same tab
 				: window.location = location 
+			// Internal routing
 			: $location.path(location);
 	}
 
 	self.toggleMenu = function() {
+		// Toggle menu
 		self.menuOpen = !self.menuOpen;
 	}
 
 	self.setSort = function() {
+		// Set sort parameter
 		$location.path().split('/')[2] ? $location.path('r/'+ $location.path().split('/')[2] + '/' + self.sort) : false;
 	}
 
 	self.search = function() {
-		var query = self.searchQuery.replace(' ', '+'); 
 		if(query.length == 0)
 			return;
+
+		// Prepare query for reddit api
+		var query = self.searchQuery.replace(' ', '+'); 
 
 		self.setLocation(null, 'search/'+query, false)
 	}
@@ -267,11 +287,14 @@ var app = angular.module('myApp', [
 		return d;
 	}
 })
+
 .filter('timeago', function() {
 	return function(input) {
+		// Call jQuery timeago
 		return $.timeago(input);
 	}
 })
+
 .factory('RecursionHelper', ['$compile', function($compile){
 	return {
         /**
@@ -315,12 +338,14 @@ var app = angular.module('myApp', [
 }])
 
 .filter('trusted', ['$sce', function($sce){
+	// Trust html
 	return function(text) {
 		return $sce.trustAsHtml(text);
 	};
 }])
 
 .filter('unescape', function(){
+	// Unescapes an escapes HTML string, must be used on every _html data
 	return function(text) {
 		return $('<div/>').html(text).text(); 
 	};
