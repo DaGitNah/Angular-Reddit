@@ -318,4 +318,10 @@ var app = angular.module('myApp', [
 	return function(text) {
 		return $sce.trustAsHtml(text);
 	};
-}]);
+}])
+
+.filter('unescape', function(){
+	return function(text) {
+		return $('<div/>').html(text).text(); 
+	};
+});

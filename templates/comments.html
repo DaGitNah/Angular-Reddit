@@ -10,7 +10,7 @@
         <div class="usertext">
             <div class="usertext-body">
                 <div class="md">
-                    <p ng-bind-html="::comment.data.body | markdown"></p>
+                    <p ng-bind-html="::comment.data.body_html | unescape | markdown"></p>
                 </div>
             </div>
         </div>

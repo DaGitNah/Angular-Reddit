@@ -4,7 +4,7 @@
   	</a>
 
   	<div class="sub-title" ng-bind="'/r/'+controller.subInfo.display_name | lowercase"></div>
-  	<div class="sub-text md" ng-bind-html="controller.subInfo.description | markdown"></div>
+  	<div class="sub-text" ng-bind-html="controller.subInfo.description_html | unescape | trusted"></div>
 </div>
 
 <div ng-include src="'templates/loader.html'"></div>
