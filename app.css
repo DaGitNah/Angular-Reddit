@@ -758,6 +758,10 @@ div.settings .changelog ul{
   padding-left: 10px;
 }
 
+div.settings .changelog > ul > li {
+  margin-bottom: 10px;
+}
+
 /*****************************/
 /*         nightmode         */
 /*****************************/
