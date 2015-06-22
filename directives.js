@@ -39,7 +39,7 @@ app.directive('clickviewtext', ['redditApiService', function(redditApiService) {
 	};
 }])
 
-.directive("hoverimage", function($location) {
+.directive("hoverimage", function($location, $http) {
 	return {
 		restrict: "E",
 		scope: {
@@ -60,9 +60,33 @@ app.directive('clickviewtext', ['redditApiService', function(redditApiService) {
 				if(!isValid){
 					url = scope.post.preview ? scope.post.preview.images[0].source.url : scope.post.thumbnail
 				} else {
-					var hasExtension = scope.post.url.match(/([^\/]*)(jpg|jpeg|png|gif|webm|gifv)$/) != null;
-					var url = hasExtension ? scope.post.url : scope.post.url + '.jpg';
-					var isGifv = url.match(/(gifv|webm|)$/)[1].length > 3;
+					if(scope.post.domain == "gfycat.com") {
+						//Gfycat link
+						var segments = scope.post.url.split('/');
+						var id = segments[segments.length-1];
+						var getUrl = "https://gfycat.com/cajax/get/"+id;
+						var request = $http({
+							url: getUrl
+						});
+						request.success(function(data, status, headers, config){
+							var url = data.gfyItem.webmUrl ? data.gfyItem.webmUrl : data.gfyItem.gifUrl;
+							var isWebm = data.gfyItem.webmUrl ? true : false;
+
+							if(isWebm){
+								$('.overlay .inner').empty().append('<video autoplay poster="'+data.gfyItem.gifUrl+'"><source src="'+url+'"></video>');
+							} else {
+								$('.overlay .inner').empty().append('<div class="overlay-image" style="background-image: url(\''+url+'\');"></div>');
+							}
+							
+							$('.overlay').addClass('active');
+							return;
+						});
+
+					} else {
+						var hasExtension = scope.post.url.match(/([^\/]*)(jpg|jpeg|png|gif|webm|gifv)$/) != null;
+						var url = hasExtension ? scope.post.url : scope.post.url + '.jpg';
+						var isGifv = url.match(/(gifv|webm|)$/)[1].length > 3;
+					}
 				}
 
 
