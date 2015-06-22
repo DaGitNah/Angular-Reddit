@@ -40,6 +40,13 @@ var app = angular.module('myApp', [
 	self.stickyHeader = Cookies.get('stickyHeader') === "true";
 	self.nightmode = Cookies.get('nightmode') === "true";
 	self.fontSize =  Cookies.get('fontSize') || "62.5";
+	self.scrollToPosition = Cookies.get('scrollToPosition') === "true";
+
+	$scope.$watch(angular.bind(this, function (scrollToPosition) {
+	  return this.scrollToPosition;
+	}), function (value) {
+		Cookies.set('scrollToPosition', value, {expires: 10000});
+	});
 
 	$scope.$watch(angular.bind(this, function (disableCards) {
 	  return this.disableCards;
@@ -104,22 +111,39 @@ var app = angular.module('myApp', [
 		self.hasSidebar = false;
 		self.sidebarOpen = false;
 
-		if(current && current.loadedTemplateUrl == "subview/subview.html") {
-			Cookies.set('lastPage', $(window).scrollTop());
-			console.log('cookie set', Cookies.get('lastPage'))
-		}
+		if(!current)
+			return;
+
+		if(current.loadedTemplateUrl != "subview/subview.html")
+			return;
+
+		Cookies.set('lastPage', $(window).scrollTop());
 	});
 
-	$rootScope.$on("$routeChangeSuccess", function(event, current, previous){
-		$rootScope.actualLocation = $location.path();
-	});
+	$rootScope.$on("$routeChangeSuccess", function(event, current, previous) {
+		$(window).scrollTop(0);
 
-	$rootScope.$watch(function () {return $location.path()}, function (newLocation, oldLocation) {
-        if($rootScope.actualLocation === newLocation) {
+		if(current.loadedTemplateUrl != "subview/subview.html")
+			return;
 
-          	//Cookies.remove('lastPage');
-        }
-    });
+		if(!Cookies.get('lastPage'))
+			return;
+
+		if(Cookies.get('scrollToPosition') === "false")
+			return;
+
+    	// TODO: Find a better way to do this
+    	self.setScrollTop()
+	})
+
+    self.setScrollTop = function() {
+    	if($(window).scrollTop() != Cookies.get('lastPage')) {
+    		$(window).scrollTop(Cookies.get('lastPage'));
+    		setTimeout(self.setScrollTop, 1000)
+    	} else {
+    		Cookies.remove('lastPage')
+    	}
+    }
 
 	$scope.$on('showLoader', function(event, args){
 		self.showLoader = args[0];

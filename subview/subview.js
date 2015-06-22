@@ -67,8 +67,8 @@ angular.module('myApp.subview', ['ngRoute'])
 		self.last = data.data.children[data.data.children.length - 1].data.name;
 		self.first = data.data.children[0].data.name;
 
-		if(Cookies.get('lastPage'))
-			$(window).scrollTop(Cookies.get('lastPage'))
+		$scope.$emit('pageReady', true);
+			
 
 	}).error(function(data, status, headers, config) {
 		self.errorMessage = 'An error occured, please check your request. Errorcode: '+status;

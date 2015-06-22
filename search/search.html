@@ -1,6 +1,4 @@
-<div class="loader">
-	<img src="inc/image/loading.gif" alt="loader">
-</div>
+<div ng-include src="'templates/loader.html'"></div>
 
 <div class="card" ng-if="controller.errorMessage">
 	<span class="error" ng-bind="::controller.errorMessage"></span>
