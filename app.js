@@ -123,6 +123,10 @@ var app = angular.module('myApp', [
 		if(current.loadedTemplateUrl != "subview/subview.html")
 			return;
 
+		// Ugly test to check manual route typing in url
+		if(current.$$route.controller == next.$$route.controller)
+			return Cookies.remove('lastPage');
+
 		// If the user switches away from the subreddit view set the cookie to store the scrollPos
 		Cookies.set('lastPage', $(window).scrollTop());
 	});
