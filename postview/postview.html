@@ -41,7 +41,7 @@
 		<p class="tagline">submitted by <a ng-click="app.setLocation($event, 'http://www.reddit.com/user/' + controller.post.author, true)" class="author" ng-bind="::controller.post.author"></a> {{controller.post.created_utc | utcdatetolocal | timeago}}  </p>
 
 		<div ng-if="controller.post.html" ng-bind-html="controller.post.html | markdown" class="quickshow"></div>
-		<div ng-if="controller.post.selftext" ng-bind-html="controller.post.selftext | markdown" class="quickshow"></div>
+		<div ng-if="controller.post.selftext_html" ng-bind-html="controller.post.selftext_html | unescape | markdown" class="quickshow md"></div>
 	</div>
 
 	<div class="clear"></div>

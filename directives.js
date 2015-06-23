@@ -9,7 +9,7 @@ app.directive('clickviewtext', ['redditApiService', function(redditApiService) {
 		'<div>'+
 			'<span ng-if="showBtn" class="btn-quickshow">View content</span>'+
 			'<span ng-if="showLoader" class="content-loader"> <img src="inc/image/loading.gif" height="50" alt="loading"> </span>'+
-			'<div ng-if="html" ng-bind-html="html | markdown" class="quickshow"></div>'+
+			'<div ng-if="html" ng-bind-html="html | unescape | markdown" class="quickshow md"></div>'+
 		'</div>',
 		link: function (scope, element, attrs) {
 			scope.showBtn = true;
@@ -25,7 +25,7 @@ app.directive('clickviewtext', ['redditApiService', function(redditApiService) {
 				scope.isOpen = true;
 
 				redditApiService.getPost(scope.link.subreddit, scope.link.id, 1).success(function (data, status, headers, config){
-					scope.html = data[0].data.children[0].data.selftext;
+					scope.html = data[0].data.children[0].data.selftext_html;
 					scope.html = (scope.html.length == 0) ? "No self text" : scope.html  
 				}).error(function(data, status, headers, config) {
 					scope.html = 'An error occured, please check your request. Errorcode: '+status;
