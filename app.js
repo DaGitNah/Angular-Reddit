@@ -212,7 +212,7 @@ var app = angular.module('myApp', [
 	}
 
 	self.search = function() {
-		if(query.length == 0)
+		if(self.searchQuery.length == 0)
 			return;
 
 		// Prepare query for reddit api
