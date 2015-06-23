@@ -681,7 +681,7 @@ tree {
   margin: 0;
 }
 
-.comment .flat-list a {
+.flat-list a {
   text-decoration: none;
   color: #888;
 }
@@ -829,6 +829,11 @@ tree {
   float: left;
   font-size: 2em;
   font-weight: bold;
+}
+
+.no-comments {
+  font-size: 1.4em;
+  padding: 5px;
 }
 
 /*****************************/

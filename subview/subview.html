@@ -62,6 +62,9 @@
 				<li class="first">
 					<a ng-click="app.setLocation($event, 'post/'+post.data.subreddit+'/'+post.data.id,false)" class="comments" ng-bind="::post.data.num_comments + ' comments'"></a>
 				</li>
+		        <li >
+		            <a href="http://www.reddit.com{{post.data.permalink}}" ng-click="app.setLocation($event, 'http://www.reddit.com'+post.data.permalink, true, true)">Comment on reddit</a>
+		        </li>
 			</ul>
 			<clickviewtext link="post.data" ng-if="post.data.is_self"></clickviewtext>
 		</div>
