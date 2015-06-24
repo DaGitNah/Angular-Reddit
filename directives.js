@@ -7,22 +7,41 @@ app.directive('clickviewtext', ['redditApiService', function(redditApiService) {
 		},
 		template: 
 		'<div>'+
-			'<span ng-if="showBtn" class="btn-quickshow">View content</span>'+
+			'<span ng-if="showBtn" class="btn-quickshow" ng-click="showContent()">View content</span>'+
 			'<span ng-if="showLoader" class="content-loader"> <img src="inc/image/loading.gif" height="50" alt="loading"> </span>'+
-			'<div ng-if="html" ng-bind-html="html | unescape | markdown" class="quickshow md"></div>'+
+			'<div ng-if="html && !hideContent" ng-bind-html="html | unescape | markdown" class="quickshow md"></div>'+
+			'<a ng-click="close()" ng-if="showClose">close</a>'+
 		'</div>',
 		link: function (scope, element, attrs) {
 			scope.showBtn = true;
 			scope.showLoader = false;
 			scope.isOpen = false;
+			scope.hideContent = false;
+			scope.showClose = false;
 
-			element.on('click', function(){	
+			scope.close = function() {
+				scope.hideContent = true;
+				scope.showBtn = true;
+				scope.showClose = false;
+				scope.isOpen = false;
+			}
+
+			scope.showContent = function() {
+				if(scope.hideContent){
+					scope.hideContent = false;
+					scope.isOpen = true;
+					scope.showBtn = false;
+					scope.showClose = true;
+					return;
+				}
+
 				if(scope.isOpen)
 					return;
 
 				scope.showBtn = false;
 				scope.showLoader = true;
 				scope.isOpen = true;
+				scope.showClose = true;
 
 				redditApiService.getPost(scope.link.subreddit, scope.link.id, 1).success(function (data, status, headers, config){
 					scope.html = data[0].data.children[0].data.selftext_html;
@@ -34,7 +53,7 @@ app.directive('clickviewtext', ['redditApiService', function(redditApiService) {
 					scope.showLoader = false;
 				});
 				
-			})
+			}
 		}
 	};
 }])
