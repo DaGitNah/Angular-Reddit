@@ -3,6 +3,7 @@
     <div class="entry" ng-class="{'collapsed': isCollapsed}">
         <p class="tagline">
             <span ng-click="app.setLocation('http://www.reddit.com/user/' + comment.data.author, true)" class="author" ng-bind="::comment.data.author"></span>
+            <span class="user-flair" ng-if="comment.data.author_flair_text" ng-bind="comment.data.author_flair_text"></span>
             <span ng-bind="::comment.data.created_utc | utcdatetolocal | timeago"></span>
             -
             <a ng-click="collapse()" ng-bind="collapseText"></a> 
