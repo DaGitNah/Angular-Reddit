@@ -41,7 +41,6 @@ app.directive('clickviewtext', ['redditApiService', function(redditApiService) {
 				scope.showBtn = false;
 				scope.showLoader = true;
 				scope.isOpen = true;
-				scope.showClose = true;
 
 				redditApiService.getPost(scope.link.subreddit, scope.link.id, 1).success(function (data, status, headers, config){
 					scope.html = data[0].data.children[0].data.selftext_html;
@@ -51,6 +50,7 @@ app.directive('clickviewtext', ['redditApiService', function(redditApiService) {
 
 				}).finally(function() {
 					scope.showLoader = false;
+					scope.showClose = true;
 				});
 				
 			}
