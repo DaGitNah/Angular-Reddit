@@ -719,6 +719,14 @@ tree {
   line-height: 1.4285714285714286em;
 }
 
+.md pre code {
+  white-space: pre;
+  background-color: transparent;
+  border: 0;
+  display: block;
+  padding: 0!important;
+}
+
 .md>:first-child, .md .-cells>:first-child, .md .-lists>:first-child, .md .-blocks>:first-child, .md .-headers>:first-child, .md h1>:first-child, .md h2>:first-child, .md h3>:first-child, .md h4>:first-child, .md h5>:first-child, .md h6>:first-child, .md th>:first-child, .md td>:first-child, .md ul>:first-child, .md ol>:first-child, .md .-lists>:first-child, .md pre>:first-child, .md blockquote>:first-child, .md table>:first-child, .md p>:first-child, .md ul>:first-child, .md ol>:first-child {
   margin-top: 0;
 }
