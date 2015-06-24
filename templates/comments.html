@@ -7,7 +7,10 @@
             -
             <a ng-click="collapse()" ng-bind="collapseText"></a> 
 
-            <img ng-if="comment.data.gilded" src="inc/image/reddit-gold.png">
+            <span div="gilds">
+                 <img ng-if="comment.data.gilded" src="inc/image/reddit-gold.png">
+                <span class="gilded-count" ng-if="comment.data.gilded">x{{comment.data.gilded}}</span>
+            </span>
         </p> 
 
         <div class="usertext">
