@@ -5,8 +5,11 @@
             <span ng-click="app.setLocation('http://www.reddit.com/user/' + comment.data.author, true)" class="author" ng-bind="::comment.data.author"></span>
             <span ng-bind="::comment.data.created_utc | utcdatetolocal | timeago"></span>
             -
-            <a ng-click="collapse()" ng-bind="collapseText"></a>
+            <a ng-click="collapse()" ng-bind="collapseText"></a> 
+
+            <img ng-if="comment.data.gilded" src="inc/image/reddit-gold.png">
         </p> 
+
         <div class="usertext">
             <div class="usertext">
                 <div class="usertext-body">
