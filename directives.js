@@ -74,6 +74,20 @@ app.directive('clickviewtext', ['redditApiService', function(redditApiService) {
                 if(scope.post.is_self)
                 	return;
 
+                if(scope.post.domain == "youtube.com") {
+                	var iframe = document.createElement("IFRAME"); 
+                	var segments = scope.post.url.split('/');
+                	var id = segments[segments.length-1].slice(8);
+                	
+                	iframe.src = "https://www.youtube.com/embed/"+id+"?autoplay=1";
+                	iframe.width = "100%";
+                	iframe.height = "100%";
+
+                	$('.overlay .inner').empty().append(iframe);
+                	$('.overlay').addClass('active');
+                	return;
+                }
+
 				var url;
 				var image = new Image();
 				var isValid = scope.post.url.match(/.+([^\/]$)/);
@@ -110,8 +124,6 @@ app.directive('clickviewtext', ['redditApiService', function(redditApiService) {
 						var isGifv = url.match(/(gifv|webm|)$/)[1].length > 3;
 					}
 				}
-
-
 
 				isGifv ? 
 				$('.overlay .inner').empty().append('<video autoplay poster="'+scope.post.preview.images[0].source.url+'"><source src="'+url.replace('gifv','webm')+'"></video>') :
