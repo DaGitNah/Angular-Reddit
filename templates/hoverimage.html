@@ -1,3 +1,7 @@
 <a class="thumbnail" ng-if="post.thumbnail && post.thumbnail != 'self' && post.thumbnail != 'default' && post.thumbnail != 'nsfw'">
-	<img src="{{post.thumbnail}}" alt="{{post.title}}">
+	<img ng-src="{{post.thumbnail}}" alt="{{post.title}}">
+</a>
+
+<a class="thumbnail" ng-if="post.thumbnail == 'self'">
+	<img src="inc/image/self_post.jpg" alt="{{post.title}}">
 </a>

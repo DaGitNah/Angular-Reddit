@@ -70,7 +70,10 @@ app.directive('clickviewtext', ['redditApiService', function(redditApiService) {
 				window.location = scope.post.url
 			});
 
-            element.on('mouseover', function() {					
+            element.on('mouseover', function() {	
+                if(scope.post.is_self)
+                	return;
+
 				var url;
 				var image = new Image();
 				var isValid = scope.post.url.match(/.+([^\/]$)/);
