@@ -66,7 +66,7 @@
 		            <a href="http://www.reddit.com{{post.data.permalink}}" ng-click="app.setLocation($event, 'http://www.reddit.com'+post.data.permalink, true, true)">Comment on reddit</a>
 		        </li>
 			</ul>
-			<clickviewtext link="post.data" ng-if="post.data.is_self"></clickviewtext>
+			<clickviewtext link="post.data" ng-if="post.data.selftext_html"></clickviewtext>
 		</div>
 
 		<div class="clear"></div>
