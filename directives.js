@@ -67,7 +67,7 @@ app.directive('clickviewtext', ['redditApiService', function(redditApiService) {
 		templateUrl: 'templates/hoverimage.html',
 		link: function(scope,element,attrs) {	
 			element.on('click', function() {
-				window.location = scope.post.url
+				window.open(scope.post.url, '_blank');
 			});
 
             element.on('mouseover', function() {	
