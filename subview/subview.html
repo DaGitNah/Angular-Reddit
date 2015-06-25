@@ -42,7 +42,7 @@
 				<span class="nsfwtag" ng-if="post.data.over_18">NSFW</span> 
 				<span ng-bind-html="::post.data.title"></span>
 			</a>
-			<a ng-if="!post.data.is_self" class="title" href="{{post.data.url}}" ng-click="app.setLocation($event, post.data.url, true)">
+			<a ng-if="!post.data.is_self" class="title" href="{{post.data.url}}" ng-click="app.setLocation($event, post.data.url, true, true)">
 				<span ng-if="post.data.stickied" class="linkflairlabel stickied">sticky</span> 
 				<span class="linkflairlabel" ng-if="post.data.link_flair_text" ng-bind-html="::post.data.link_flair_text"></span> 
 				<span class="nsfwtag" ng-if="post.data.over_18">NSFW</span> 
