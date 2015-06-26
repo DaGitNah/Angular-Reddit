@@ -96,7 +96,6 @@ var app = angular.module('myApp', [
 		self.activeReddit = self.getActiveReddit(); // Get the current subreddit
 	});
 
-	self.sort = $location.path().split('/')[3]; // Get the sort param
 	self.sortTypes = [ // Available sort types
 		'top',
 		'hot',
@@ -104,13 +103,23 @@ var app = angular.module('myApp', [
 		'new'
 	];
 
+	self.getSort = function() {
+		self.sort = $location.path().split('/')[3]; 
+		self.checkSort();
+	}
+
+	self.checkSort = function() {
+		if(!self.sortTypes.indexOf(self.sort) == -1)
+			return;
+		
+		self.sort = "hot"; // Overwrite if a non-valid sort is chosen
+	}
+
+	self.getSort();
+
 	redditApiService.getSubreddits().success(function (data, status, headers, config){
 		self.subreddits = data.data.children; // Get initial subreddits (/r/all)
 	})
-
-	if(self.sortTypes.indexOf(self.sort) == -1){
-		self.sort = "hot"; // Overwrite if a non-valid sort is chosen
-	}
 
 	$rootScope.$on("$routeChangeStart", function(event, next, current) {
 		self.showLoader = true; // Show the loader 
@@ -134,6 +143,8 @@ var app = angular.module('myApp', [
 	$rootScope.$on("$routeChangeSuccess", function(event, current, previous) {
 		// Fixes a bug where scrollTop would be the same as lastPage cookie while it isn't scrolled
 		$(window).scrollTop(0);
+
+		self.getSort();
 
 		if(current.loadedTemplateUrl != "subview/subview.html")
 			return;
