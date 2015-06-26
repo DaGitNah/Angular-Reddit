@@ -109,7 +109,7 @@ var app = angular.module('myApp', [
 	}
 
 	self.checkSort = function() {
-		if(!self.sortTypes.indexOf(self.sort) == -1)
+		if(self.sortTypes.indexOf(self.sort) > -1)
 			return;
 		
 		self.sort = "hot"; // Overwrite if a non-valid sort is chosen
@@ -125,6 +125,7 @@ var app = angular.module('myApp', [
 		self.showLoader = true; // Show the loader 
 		self.sidebarOpen = false; // Close the sidebar
 		self.hasSidebar = false; // Hide the sidebar
+
 
 		if(!current)
 			return;
