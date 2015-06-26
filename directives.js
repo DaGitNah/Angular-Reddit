@@ -88,6 +88,20 @@ app.directive('clickviewtext', ['redditApiService', function(redditApiService) {
                 	return;
                 }
 
+                if(scope.post.domain == "youtu.be") {
+                	var iframe = document.createElement("IFRAME"); 
+                	var segments = scope.post.url.split('/');
+                	var id = segments[segments.length-1];
+                	
+                	iframe.src = "https://www.youtube.com/embed/"+id+"?autoplay=1";
+                	iframe.width = "100%";
+                	iframe.height = "100%";
+
+                	$('.overlay .inner').empty().append(iframe);
+                	$('.overlay').addClass('active');
+                	return;
+                }
+
 				var url;
 				var image = new Image();
 				var isValid = scope.post.url.match(/.+([^\/]$)/);
