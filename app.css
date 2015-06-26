@@ -996,8 +996,9 @@ div.settings .changelog > ul > li {
     margin: 3px 0;
   }
 
-  .headbar .settings {
+  .headbar .btn-settings {
     float: left;
+    margin-bottom: 5px;
   }
 
   .link .thumbnail {
