@@ -77,7 +77,9 @@ app.directive('clickviewtext', ['redditApiService', function(redditApiService) {
                 if(scope.post.domain == "youtube.com") {
                 	var iframe = document.createElement("IFRAME"); 
                 	var segments = scope.post.url.split('/');
-                	var id = segments[segments.length-1].slice(8);
+                	var segment = segments[segments.length-1];
+                	var key = segment.substr('&') == -1 ? segment : segment.split('&')[0];
+                	var id = key.slice(8);
                 	
                 	iframe.src = "https://www.youtube.com/embed/"+id+"?autoplay=1";
                 	iframe.width = "100%";
